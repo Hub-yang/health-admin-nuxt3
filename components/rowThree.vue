@@ -3,5 +3,7 @@
 </script>
 
 <template>
-  <div>index</div>
+  <div h="20%" relative bg-purple>
+    index
+  </div>
 </template>
