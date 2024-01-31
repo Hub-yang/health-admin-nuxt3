@@ -58,19 +58,19 @@ function authLogin() {
 
 async function handlerLogin(username: string, password: string) {
   const userStore = useUserStore()
-  const { data: { value: data } } = await login({ username, password }) as anyKey
-  if (data && data.code === 200) {
+  const { data = {}, code, msg } = await login({ username, password }) as anyKey
+  if (code && code === 200) {
     await navigateTo('/dashboard')
-    message.success(data.msg)
-    userStore.setUserInfo(toRaw(data.data))
+    message.success(msg)
+    userStore.setUserInfo(toRaw(data))
   }
-  else { message.error(data.msg) }
+  else { message.error(msg) }
 }
 
 async function handlerReg(username: string, password: string) {
-  const { data: { value: data } } = await register({ username, password }) as anyKey
-  if (data && data.code === 200) {
-    message.success(data.msg)
+  const { code, msg } = await register({ username, password }) as anyKey
+  if (code && code === 200) {
+    message.success(msg)
     resetForm()
     isReg.value = false
     clearTimeout(timer as NodeJS.Timeout)
@@ -79,7 +79,7 @@ async function handlerReg(username: string, password: string) {
     }, 400)
   }
   else {
-    message.error(data.msg)
+    message.error(msg)
   }
 }
 
@@ -108,9 +108,9 @@ function passwordBlur() {
 
 // 注册时用户名输入框失去焦点时请求是否重名
 async function inputBlur() {
-  const { data: { value: data } } = await checkName(username.value) as any
-  if (data.code !== 200)
-    message.error(data.msg)
+  const { code, msg } = await checkName(username.value) as any
+  if (code !== 200)
+    message.error(msg)
 }
 
 function getRandomColor() {

@@ -5,10 +5,13 @@
  * @param {any} data {username:用户名,password:密码}
  */
 export function login(data: anyKey) {
-  return useFetch('/api/login', {
-    method: 'POST',
-    body: data,
-  })
+  return $fetch(
+    '/api/login',
+    {
+      method: 'POST',
+      body: data,
+    },
+  )
 }
 
 /**
@@ -18,7 +21,7 @@ export function login(data: anyKey) {
  * @param {any} data {username:用户名,password:密码}
  */
 export function register(data: anyKey) {
-  return useFetch('/api/register', {
+  return $fetch('/api/register', {
     method: 'POST',
     body: data,
   })
@@ -31,7 +34,7 @@ export function register(data: anyKey) {
  * @param {any} username 用户名
  */
 export function checkName(username: string) {
-  return useFetch(`/api/checkName?username=${username}`, {
+  return $fetch(`/api/checkName?username=${username}`, {
     method: 'GET',
   })
 }
