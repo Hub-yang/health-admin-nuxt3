@@ -1,6 +1,6 @@
 import { appDescription } from './constants/index'
-
 export default defineNuxtConfig({
+  ssr: true, // 默认
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@ant-design-vue/nuxt',
   ],
   imports: {
-    dirs: ['utils/*.{ts,js}', 'api/*.{ts,js}'],
+    dirs: ['utils/*.{ts,js}', 'api/*.{ts,js}', 'constants/**.{ts,js}'],
   },
   routeRules: {
     '/': { redirect: '/login' },
@@ -33,17 +33,17 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
-  nitro: {
-    esbuild: {
-      options: {
-        target: 'esnext',
-      },
-    },
-    prerender: {
-      crawlLinks: false,
-      routes: ['/'],
-    },
-  },
+  // nitro: {
+  //   esbuild: {
+  //     options: {
+  //       target: 'esnext',
+  //     },
+  //   },
+  //   prerender: {
+  //     crawlLinks: false,
+  //     routes: ['/'],
+  //   },
+  // },
 
   app: {
     // pageTransition: {

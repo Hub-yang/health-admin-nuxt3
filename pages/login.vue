@@ -57,12 +57,15 @@ function authLogin() {
 }
 
 async function handlerLogin(username: string, password: string) {
-  const userStore = useUserStore()
   const { data = {}, code, msg } = await login({ username, password }) as anyKey
   if (code && code === 200) {
-    await navigateTo('/dashboard')
     message.success(msg)
-    userStore.setUserInfo(toRaw(data))
+    const userInfo = {
+      username: data?.username ?? '--',
+      uid: data?.uid ?? '',
+    }
+    useStorage().setItems({ [token_key]: data?.token ?? '', [userInfo_key]: JSON.stringify(userInfo) })
+    await navigateTo('/dashboard')
   }
   else { message.error(msg) }
 }
@@ -106,7 +109,6 @@ function passwordBlur() {
     message.error('密码格式不正确')
 }
 
-// 注册时用户名输入框失去焦点时请求是否重名
 async function inputBlur() {
   const { code, msg } = await checkName(username.value) as any
   if (code !== 200)
@@ -121,7 +123,6 @@ watch(toggleToolTip, (isTrue) => {
   if (isTrue)
     tooltipColor.value = getRandomColor()
 })
-// #endregion
 </script>
 
 <template>

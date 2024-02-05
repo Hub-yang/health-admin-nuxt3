@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import { appName } from '~/constants'
 
 useHead({
   title: useRoute().meta.title || appName,

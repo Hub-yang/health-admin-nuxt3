@@ -2,8 +2,12 @@
 definePageMeta({
   title: '欢迎登录',
 })
-
 const isCollapsed = ref(false)
+
+async function logout() {
+  useStorage().removeItems(token_key, userInfo_key)
+  await navigateTo('/login', { replace: true })
+}
 </script>
 
 <template>
@@ -11,6 +15,10 @@ const isCollapsed = ref(false)
     h-full
     w-full
   >
+    <button @click="logout">
+      logout
+    </button>
+
     <a-layout h-full important-bg-blue>
       <a-layout-content
         width="75%"
