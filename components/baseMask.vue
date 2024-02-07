@@ -1,22 +1,27 @@
-<!-- <script setup lang='ts'>
-import { useStorage } from '@vueuse/core'
-
-onMounted(() => {
-
-
-  
-  const username=useStorage("username")
-  console.log('username :>>> ', username.value)
+<script setup lang='ts'>
+const show = defineModel('show', {
+  type: Boolean,
 })
-
-const startStyleShow = ref(true)
+const username = toRef(() => (useCookie(userInfo_key).value as any)?.username ?? '--') // readonly
 </script>
 
 <template>
-  <div v-if="startStyleShow">
-    <h1 @click.once="startStyleShow = false">
-      Hello,{{ username}}
+  <div
+    h-full
+    w-full
+    flex-center
+    bg-black:80
+  >
+    <h1
+      class="mask-animation"
+      cursor-pointer
+      text-6xl
+      color-white
+      font-900
+      italic
+      @click.once="show = false"
+    >
+      Hello,{{ username }}
     </h1>
   </div>
 </template>
-   -->

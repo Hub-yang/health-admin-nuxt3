@@ -1,3 +1,4 @@
+@import url(./animation.scss);
 // global-presuppose
 body {
   width: 100vw;
@@ -13,4 +14,15 @@ body {
 html.dark {
   background: #222;
   color: white;
+}
+
+/* global-page-transition */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
 }
