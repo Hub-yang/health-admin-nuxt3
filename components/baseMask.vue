@@ -2,7 +2,7 @@
 const show = defineModel('show', {
   type: Boolean,
 })
-const username = toRef(() => (useCookie(userInfo_key).value as any)?.username ?? '--') // readonly
+const username = toRef(() => (useCookie(USERINFO_KEY).value as any)?.username ?? '--') // readonly
 </script>
 
 <template>

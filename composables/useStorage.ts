@@ -1,6 +1,6 @@
 export function useStorage() {
-  function getItem(key: string) {
-    return useCookie(key)
+  function getItem(key: string): any {
+    return useCookie(key).value
   }
 
   function setItems(key: string | anyKey, value?: any) {
