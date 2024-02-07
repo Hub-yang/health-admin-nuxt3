@@ -38,3 +38,10 @@ export function checkName(username: string) {
     method: 'GET',
   })
 }
+
+export function addweight(data = {}) {
+  return $fetch('/api/addweight', {
+    method: 'POST',
+    data,
+  })
+}

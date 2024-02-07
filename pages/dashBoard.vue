@@ -5,7 +5,7 @@ definePageMeta({
 const isCollapsed = ref(false)
 
 // async function logout() {
-//   useStorage().removeItems(token_key, userInfo_key)
+//   useStorage().removeItems(TOKEN_KEY, USERINFO_KEY)
 //   await navigateTo('/login', { replace: true })
 // }
 
@@ -13,14 +13,19 @@ const startStyleShow = ref(true)
 </script>
 
 <template>
-  <div h-full w-full>
+  <div
+    h-full w-full
+  >
     <Transition name="page" mode="out-in">
       <baseMask
         v-if="startStyleShow"
         v-model:show="startStyleShow"
       />
+    </Transition>
+    <homePageDrawer v-if="!startStyleShow" />
+    <Transition name="page" mode="out-in">
       <a-layout
-        v-else
+        v-if="!startStyleShow"
         h-full
         important-bg-blue
       >
