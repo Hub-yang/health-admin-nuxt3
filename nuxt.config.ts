@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@ant-design-vue/nuxt',
   ],
   imports: {
-    dirs: ['utils/*.{ts,js}', 'api/*.{ts,js}', 'constants/**.{ts,js}'],
+    dirs: ['utils/*.{ts,js}', 'api/*.{ts,js}', 'constants/**.{ts,js}', 'stores/**.{ts,js}'],
   },
   routeRules: {
     '/': { redirect: '/login' },
@@ -68,6 +68,6 @@ export default defineNuxtConfig({
   },
 
   devtools: {
-    enabled: false,
+    enabled: true,
   },
 })

@@ -16,10 +16,25 @@ const visible = ref(false)
 
 <template>
   <!-- button to open the drawer -->
-  <div class="home_aside">
-    <button class="showDrawnBtn" @click="visible = true">
-      >
-    </button>
+  <div
+    fixed
+    left-0
+    top="[calc(50%-5rem)]"
+    z-1
+    h35
+    w4
+    flex="~ start content-start items-center"
+    border="1 solid #27b2f3"
+    rounded-l-0
+    rounded-r-5
+    bg="#27b2f3"
+    color-white
+    shadow-blue
+    transition-all
+    hover="w-6"
+    @click="visible = true"
+  >
+    <span i-carbon-chevron-right />
   </div>
   <div>
     <a-drawer
@@ -32,7 +47,7 @@ const visible = ref(false)
       :footer-style="{ textAlign: 'right', padding: '8px' }"
       :body-style="{ padding: '5px 10px', marginBottom: '49px' }"
     >
-      <div class="main_area">
+      <div h-auto w-full>
         <!-- 表单区域 -->
         <a-form
           ref="formRef"
@@ -118,14 +133,28 @@ const visible = ref(false)
               </a-form-item>
             </a-col>
           </a-row>
-          <!-- 底部按钮控件 -->
-          <div class="drawer_bottom">
-            <a-button style="margin-right: 8px" @click="resetForm">
+          <!-- button groups -->
+          <div
+            fixed
+            bottom-0
+            left-0
+            z-1
+            w="720px"
+            bg-white
+            b-t="1 solid #e9e9e9"
+            px-2
+            py-3
+            text-right
+          >
+            <a-button mr-2 @click="resetForm">
               重置
             </a-button>
+            <a-button type="primary">
+              index
+            </a-button>
             <a-button
-              type="primary"
               html-type="submit"
+              type="primary"
               :loading="submitLoading"
             >
               提交
@@ -133,68 +162,10 @@ const visible = ref(false)
           </div>
         </a-form>
         <!-- 表格区域 -->
-        <div class="table_area">
+        <div w-full>
           <!-- <Table /> -->
         </div>
       </div>
     </a-drawer>
   </div>
 </template>
-
-<style scoped lang="scss">
-.home_aside {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: calc(50% - 75px);
-  height: 150px;
-  width: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  .showDrawnBtn {
-    cursor: pointer;
-    display: block;
-    width: 20px;
-    height: 150px;
-    overflow: hidden;
-    outline: none;
-    border: 1px solid #27b2f3;
-    border-radius: 0 15px 15px 0;
-    box-shadow: 2px 0 10px 0 #27b2f3;
-    text-align: center;
-    padding: 0;
-    background-color: #27b2f3;
-    color: white;
-    transition: all 0.3s ease;
-  }
-
-  .showDrawnBtn:hover {
-    width: 25px;
-    transition: all 0.3s ease;
-  }
-}
-.drawer_bottom {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 720px;
-  border-top: 1px solid #e9e9e9;
-  padding: 8px 16px;
-  background: #fff;
-  text-align: right;
-  z-index: 1;
-}
-
-.main_area {
-  width: 100%;
-  height: auto;
-  // display: flex;
-  // flex-direction: column;
-
-  .table_area {
-    width: 100%;
-  }
-}
-</style>

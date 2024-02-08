@@ -14,7 +14,7 @@ const startStyleShow = ref(true)
 
 <template>
   <div
-    h-full w-full
+    h-full w-full overflow-hidden
   >
     <Transition name="page" mode="out-in">
       <baseMask
