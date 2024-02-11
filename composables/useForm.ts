@@ -156,9 +156,9 @@ export function useForm() {
     }
 
     // 发送请求
-    addweight(formObj).then((res: any) => {
+    addweight(formObj).then(async (res: any) => {
       if (res.code === 200) {
-        getData()
+        await getData()
         message.success({ content: res.msg, duration: 2 })
         submitLoading.value = false
         setTimeout(() => resetForm(), 100)
