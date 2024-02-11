@@ -2,14 +2,14 @@
  * 用户登录
  * @author HuberyYang
  * @date 2023-12-12
- * @param {any} data {username:用户名,password:密码}
+ * @param {any} body {username:用户名,password:密码}
  */
-export function login(data: anyKey) {
+export function login(body: anyKey = {}) {
   return $fetch(
     '/api/login',
     {
       method: 'POST',
-      body: data,
+      body,
     },
   )
 }
@@ -18,12 +18,12 @@ export function login(data: anyKey) {
  * 用户注册
  * @author HuberyYang
  * @date 2023-12-13
- * @param {any} data {username:用户名,password:密码}
+ * @param {any} body {username:用户名,password:密码}
  */
-export function register(data: anyKey) {
+export function register(body: anyKey = {}) {
   return $fetch('/api/register', {
     method: 'POST',
-    body: data,
+    body,
   })
 }
 
@@ -39,9 +39,50 @@ export function checkName(username: string) {
   })
 }
 
-export function addweight(data = {}) {
+/**
+ * 新增数据
+ * @author HuberyYang
+ * @date 2024-02-09
+ */
+export function addweight(body = {}) {
   return $fetch('/api/addweight', {
     method: 'POST',
-    data,
+    body,
+  })
+}
+
+/**
+ * 删除数据
+ * @author HuberyYang
+ * @date 2024-02-09
+ */
+export function delData(body = {}) {
+  return $fetch('/api/delData', {
+    method: 'POST',
+    body,
+  })
+}
+
+/**
+ * 获取列表数据
+ * @author HuberyYang
+ * @date 2024-02-09
+ */
+export function getTableList(body = {}) {
+  return $fetch('/api/getTableList', {
+    method: 'POST',
+    body,
+  })
+}
+
+/**
+ * 更新数据
+ * @author HuberyYang
+ * @date 2024-02-09
+ */
+export function updateWeight(body = {}) {
+  return $fetch('/api/updateWeight', {
+    method: 'POST',
+    body,
   })
 }
