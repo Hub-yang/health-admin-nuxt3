@@ -15,6 +15,7 @@ import {
 
 // 引入提示框、数据集等组件
 import {
+  DataZoomComponent,
   GeoComponent,
   GraphicComponent,
   GridComponent,
@@ -47,6 +48,7 @@ export type ECOption = ComposeOption<
 
 // 注册必须的组件
 echarts.use([
+  DataZoomComponent,
   LineChart,
   TitleComponent,
   TooltipComponent,

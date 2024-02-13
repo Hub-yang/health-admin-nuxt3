@@ -1,9 +1,9 @@
 <script setup lang='ts'>
-
+const BaseLineChart = defineAsyncComponent(() => import('./charts/baseLineChart.vue'))
 </script>
 
 <template>
-  <div h="20%" relative bg-red>
-    <TestChart h-full w-full />
+  <div h="30%" relative>
+    <BaseLineChart />
   </div>
 </template>
