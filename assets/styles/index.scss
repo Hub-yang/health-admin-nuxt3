@@ -26,3 +26,33 @@ html.dark {
   opacity: 0;
   filter: blur(1rem);
 }
+
+
+// 进度条样式重写
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 10px;
+  /*将轨道设为圆角的*/
+  // box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112;
+  /*轨道内置阴影效果*/
+  background-color: #6222e9;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  margin-top: -6px;
+  /*使滑块超出轨道部分的偏移量相等*/
+  background: #6222e9;
+  border-radius: 50%;
+  /*外观设置为圆形*/
+  // border: 2px solid #5730c3;
+  /*设置边框*/
+  box-shadow: 0 0 5px 2px #6222e9;
+  /*添加底部阴影*/
+}

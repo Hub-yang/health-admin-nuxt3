@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-const BasePieChart = defineAsyncComponent(() => import('./charts/basePieChart.vue'))
+const BasePieChart = defineAsyncComponent(() => import('./charts/BasePieChart.vue'))
 const BaseBarChart = defineAsyncComponent(() => import('./charts/BaseBarChart.vue'))
 </script>
 

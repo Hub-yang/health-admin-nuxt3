@@ -13,8 +13,8 @@ export function useStorage() {
     return true
   }
 
-  function removeItems(...keys: string[]) {
-    keys = keys || []
+  function removeItems(...keys: any[]) {
+    keys = (keys || []).flat(Number.POSITIVE_INFINITY)
     keys.forEach(k => useCookie(k).value = null)
   }
 
