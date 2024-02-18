@@ -11,16 +11,14 @@ interface Props {
   loading?: boolean // 加载状态
   onMouseover?: (...args: any[]) => any
   onMouseout?: (...args: any[]) => any
+  onClick?: (...args: any[]) => any
 }
 
 const props = withDefaults(defineProps<Props>(), {
   loading: false,
-  autoRound: () => ({
-    open: false,
-    delay: 2000,
-  }),
   onMouseover: () => { },
   onMouseout: () => { },
+  onClick: () => { },
 })
 
 const chartRef = ref<Ref<HTMLDivElement>>()
@@ -44,7 +42,7 @@ function init() {
       }),
     )
 
-    // 绑定鼠标事件：
+    // 事件绑定：
     if (props.onMouseover) {
       chartInstance.value.on('mouseover', (event: anyKey) => {
         props.onMouseover(event, chartInstance.value, props.option)
@@ -53,6 +51,11 @@ function init() {
     if (props.onMouseout) {
       chartInstance.value.on('mouseout', (event: anyKey) => {
         props.onMouseout(event, chartInstance.value, props.option)
+      })
+    }
+    if (props.onClick) {
+      chartInstance.value.on('click', (event: anyKey) => {
+        props.onClick(event, chartInstance.value, props.option)
       })
     }
 
@@ -68,10 +71,6 @@ function resize() {
 
 // resize防抖
 const debouncedResize = useDebounceFn(resize, 500, { maxWait: 800 })
-
-watch(props, () => {
-  draw()
-})
 
 // 监听loading
 watch(

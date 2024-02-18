@@ -9,29 +9,27 @@ const isCollapsed = ref(false)
 //   await navigateTo('/login', { replace: true })
 // }
 
-const startStyleShow = ref(true)
+const startStyleShow = ref(false)
 </script>
 
 <template>
   <div
     h-full w-full overflow-hidden
   >
-    <Transition name="page" mode="out-in">
+    <!-- <Transition name="page" mode="out-in">
       <baseMask
         v-if="startStyleShow"
         v-model:show="startStyleShow"
       />
-    </Transition>
-    <homePageDrawer v-if="!startStyleShow" />
+    </Transition> -->
+    <!-- <homePageDrawer v-if="!startStyleShow" /> -->
     <Transition name="page" mode="out-in">
       <a-layout
         v-if="!startStyleShow"
         h-full
-        important-bg-blue
       >
         <a-layout-content
           width="75%"
-          important-bg-blue
         >
           <row-one />
           <row-two />

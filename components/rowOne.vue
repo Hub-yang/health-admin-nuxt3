@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-const BaseLineChart = defineAsyncComponent(() => import('./charts/baseLineChart.vue'))
+const BaseLineChart = defineAsyncComponent(() => import('./charts/BaseLineChart.vue'))
 </script>
 
 <template>

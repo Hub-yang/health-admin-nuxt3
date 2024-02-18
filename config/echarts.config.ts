@@ -22,6 +22,7 @@ import {
   type GridComponentOption,
   LegendComponent,
   type LegendComponentOption,
+  SingleAxisComponent,
   TitleComponent,
   type TitleComponentOption,
   TooltipComponent,
@@ -65,6 +66,7 @@ echarts.use([
   GraphicComponent,
   VisualMapComponent,
   GeoComponent,
+  SingleAxisComponent
 ])
 
 export default echarts
