@@ -1,15 +1,6 @@
 <script setup lang="ts">
-const year = defineModel('year', { default: '2023' })
-const options = [
-  {
-    value: '2023',
-    label: '2023',
-  },
-  {
-    value: '2022',
-    label: '2022',
-  },
-]
+const { options } = useYearSelectOptionsAuto()
+const year = defineModel('year', { type: String })
 </script>
 
 <template>

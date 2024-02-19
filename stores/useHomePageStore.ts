@@ -9,9 +9,10 @@
 // } from 'utils/handleData'
 
 export const useHomePageStore = defineStore('homePageStore', () => {
+  const { year } = useYearSelectOptionsAuto()
   const data = reactive({
     // 选择框年份
-    year: '2023',
+    year: year.value,
     seriesOne: [],
     xAxisDataOne: [],
     seriesTwo: [],
