@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { SearchOutlined } from '@ant-design/icons-vue'
 
 const {
@@ -28,12 +28,12 @@ const {
     bordered
     :pagination="false"
     :data-source="data"
-    :columns="columns"
+    :columns="(columns as any)"
     :scroll="{ x: 900, y: 300 }"
     size="middle"
     :loading="loading"
     :row-class-name="
-      (_record, index) => (index % 2 === 1 ? 'table-striped' : null)
+      (_record, index) => (index % 2 === 1 ? 'table-striped' : null) as any
     "
   >
     <template #headerCell="{ column }">
@@ -120,7 +120,7 @@ const {
       <template
         v-if="
           ['weight', 'caloric', 'trainingTime'].includes(
-            column.dataIndex,
+            `${column.dataIndex}`,
           )
         "
       >
@@ -128,7 +128,7 @@ const {
           <a-input
             v-if="editableData[record.key]"
             v-model:value.number="
-              editableData[record.key][column.dataIndex]
+              editableData[record.key][column.dataIndex as string]
             "
             style="margin: -5px 0"
           />

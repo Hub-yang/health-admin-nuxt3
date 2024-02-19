@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const myChart = ref()
 const showBack = ref(false)
 const option = {
@@ -36,7 +36,7 @@ const option = {
   xAxis: {
     type: 'category',
     axisLabel: {
-      color(value, index) {
+      color(_: any, index: number) {
         const colorList = [
           '#00FCFF',
           '#0091FF',
@@ -117,7 +117,7 @@ const option = {
     },
     itemStyle: {
       borderRadius: [12, 12, 5, 5],
-      color(params) {
+      color(params: anyKey) {
         const colorList = [
           '#00FCFF',
           '#0091FF',
@@ -725,7 +725,7 @@ const drilldownData = [
 ]
 
 // 下钻
-function handleClick(event) {
+function handleClick(event: any) {
   if (event.data && drilldownData.length) {
     showBack.value = true
     const subData = drilldownData.find((data) => {

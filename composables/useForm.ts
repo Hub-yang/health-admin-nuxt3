@@ -5,7 +5,7 @@ export function useForm() {
   // 日期选择器国际化设置
   dayjs.locale('zh-cn')
   const formRef = ref()
-  const form = reactive({
+  const form = reactive<anyKey>({
     date: null,
     weight: '',
     training: [],

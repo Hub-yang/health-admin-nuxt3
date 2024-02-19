@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const {
   rules,
   trainingType,
@@ -52,7 +52,7 @@ const isVisible = ref(false)
           <a-form
             ref="formRef"
             :model="form"
-            :rules="rules"
+            :rules="(rules as any)"
             layout="vertical"
             autocomplete="off"
             @finish="onFinish"
@@ -69,7 +69,7 @@ const isVisible = ref(false)
                     placeholder="选择日期"
                     value-format="YYYY-MM-DD"
                     :get-popup-container="
-                      (trigger) => trigger.parentElement
+                      (trigger) => trigger.parentElement as any
                     "
                   />
                 </a-form-item>

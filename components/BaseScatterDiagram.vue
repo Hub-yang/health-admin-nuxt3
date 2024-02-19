@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const BaseScatterChartOne = defineAsyncComponent(() => import('./charts/BaseScatterChartOne.vue'))
 const BaseScatterChartTwo = defineAsyncComponent(() => import('./charts/BaseScatterChartTwo.vue'))
 
@@ -6,10 +6,10 @@ const width1 = ref('95%')
 const width2 = ref('5%')
 const baseTitle = ref('5%')
 
-const areaOne = ref(null)
-const areaTwo = ref(null)
+const areaOne = ref<any>(null)
+const areaTwo = ref<any>(null)
 
-function toggleActive(index) {
+function toggleActive(index: number) {
   switch (index) {
     case 1:
       areaOne.value.classList.add('active')

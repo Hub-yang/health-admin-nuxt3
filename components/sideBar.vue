@@ -10,8 +10,6 @@ const {
   data,
   getGlobalData,
 } = useHomePageStore()
-
-const currentTab = shallowRef<Component | null>(null)
 async function handleLogout() {
   useStorage().removeItems(TOKEN_KEY, USERINFO_KEY)
   await navigateTo('/login', { replace: true })
@@ -19,10 +17,6 @@ async function handleLogout() {
 }
 
 watch(() => data.year, () => getGlobalData())
-
-function handleSwitchTab(tab: Component) {
-  currentTab.value = tab
-}
 </script>
 
 <template>
@@ -78,9 +72,7 @@ function handleSwitchTab(tab: Component) {
 
       <!-- switch button -->
       <div v-once class="tabs_container">
-        <BaseSwitchTabs
-          @handle-switch-tab="handleSwitchTab"
-        />
+        <BaseSwitchTabs />
       </div>
     </div>
   </a-layout-sider>
