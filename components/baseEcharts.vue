@@ -5,17 +5,17 @@ import echarts from '~/config/echarts.config'
 type themeType = string | anyKey
 interface Props {
   option: anyKey
-  width: string // 必须指定容器的宽高，否则无法显示。（容器内图表会自动获取父元素宽高）
-  height: string
+  width?: string // 必须指定容器的宽高，否则无法显示。（容器内图表会自动获取父元素宽高）
+  height?: string
   theme?: themeType
-  loading?: boolean // 加载状态
   onMouseover?: (...args: any[]) => any
   onMouseout?: (...args: any[]) => any
   onClick?: (...args: any[]) => any
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  loading: false,
+  width: '100%',
+  height: '100%',
   onMouseover: () => { },
   onMouseout: () => { },
   onClick: () => { },
@@ -23,7 +23,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const chartRef = ref<Ref<HTMLDivElement>>()
 const chartInstance = ref<EChartsType>()
-
 function draw() {
   if (chartInstance.value)
     chartInstance.value.setOption(props.option, { notMerge: true })
@@ -63,6 +62,8 @@ function init() {
   }
 }
 
+// watch(() => props.option, () => draw(), { deep: true })
+
 // 窗口自适应并开启过渡动画
 function resize() {
   if (chartInstance.value)
@@ -71,23 +72,6 @@ function resize() {
 
 // resize防抖
 const debouncedResize = useDebounceFn(resize, 500, { maxWait: 800 })
-
-// 监听loading
-watch(
-  () => props.loading,
-  (loading) => {
-    nextTick(() => {
-      if (!chartInstance.value)
-        return false
-      loading
-        ? chartInstance.value!.showLoading()
-        : chartInstance.value!.hideLoading()
-    })
-  },
-  {
-    immediate: true,
-  },
-)
 
 onMounted(() => {
   init()

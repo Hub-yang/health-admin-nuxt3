@@ -68,11 +68,12 @@ export function useTable() {
       align: 'center',
     },
   ]
+  const { year } = storeToRefs(useHomePageStore())
 
   async function handleGetTableData() {
     loading.value = true
     const tableSeries = [] as any[]
-    getTableList({ uid: uid.value, page: currentPageNum.value, pageSize: 20 })
+    getTableList({ uid: uid.value, year: year.value, page: currentPageNum.value, pageSize: 20 })
       .then((res: any) => {
         if (res.code === 200) {
           loading.value = false
@@ -144,7 +145,7 @@ export function useTable() {
     updateWeight(formObj).then(async (res: any) => {
       if (res.code === 200) {
         await handleGetTableData()
-        await useHomePageStore().getGlobalData()
+        // await useHomePageStore().getGlobalData()
         message.success({ content: res.msg, duration: 2 })
       }
       else {

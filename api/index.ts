@@ -93,3 +93,8 @@ export function getWeather() {
     'https://devapi.qweather.com/v7/weather/now?location=101010100&key=5649bab4e85c4ab0a8d82c7d86867fe3',
   )
 }
+
+// 获取用户数据
+export function getAllChartsData({ uid, year }: anyKey) {
+  return $fetch(`/api/getAllChartsData?uid=${uid}&year=${year}`)
+}

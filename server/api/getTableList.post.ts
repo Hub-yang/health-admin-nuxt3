@@ -1,7 +1,7 @@
 import { pool } from '../db/createPool'
 
 export default defineEventHandler(async (event) => {
-  let { page, pageSize, uid: $uid } = await readBody(event)
+  let { page, pageSize, uid: $uid, year: $year } = await readBody(event)
   if (!page) {
     return {
       code: 201,
@@ -10,8 +10,8 @@ export default defineEventHandler(async (event) => {
   }
   pageSize = +pageSize || 20
   const start = (page - 1) * pageSize
-  const sql = `SELECT * FROM my_weight WHERE uid=? ORDER BY date DESC limit ${pageSize} OFFSET ${start}`
-  const [rows] = await pool.execute(sql, [$uid]) as any[][]
+  const sql = `SELECT * FROM my_weight WHERE uid=? AND year=? ORDER BY date DESC limit ${pageSize} OFFSET ${start}`
+  const [rows] = await pool.execute(sql, [$uid, $year]) as any[][]
   if (rows && rows.length) {
     return {
       code: 200,

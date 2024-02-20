@@ -1,5 +1,18 @@
 <script setup lang='ts'>
-const option = {
+const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
+const { year } = storeToRefs(useHomePageStore())
+const { data, pending } = await useFetch('/api/getAllChartsData', {
+  query: { uid, year },
+  watch: [year],
+  lazy: true,
+  transform: data => handleData(data),
+})
+
+function handleData(data: any) {
+  return getChartThreeData(data)
+}
+
+const option = computed(() => ({
   tooltip: {
     trigger: 'item',
     backgroundColor: 'rgba(50,50,50,0.8)',
@@ -49,44 +62,11 @@ const option = {
       length: 10,
       length2: 20,
     },
-    data: [
-      {
-        value: 2,
-        name: '肩',
-      },
-      {
-        value: 2,
-        name: '背',
-      },
-      {
-        value: 2,
-        name: '腿',
-      },
-      {
-        value: 3,
-        name: 'HIIT',
-      },
-      {
-        value: 16,
-        name: '手臂',
-      },
-      {
-        value: 27,
-        name: '燃脂',
-      },
-      {
-        value: 28,
-        name: '胸',
-      },
-      {
-        value: 53,
-        name: '核心',
-      },
-    ],
+    data: data.value,
   },
-}
+}))
 </script>
 
 <template>
-  <BaseEcharts width="100%" height="100%" :option="option" />
+  <BaseEcharts v-if="!pending" :option="option" />
 </template>

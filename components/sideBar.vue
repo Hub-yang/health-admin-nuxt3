@@ -7,16 +7,16 @@ const username = computed(() => {
   return username.at(0).toLocaleUpperCase() + username.substring(1).toLocaleLowerCase()
 })
 const {
-  data,
-  getGlobalData,
-} = useHomePageStore()
+  year,
+} = storeToRefs(useHomePageStore())
+
+watch(year, () => useHomePageStore().getGlobalData())
+
 async function handleLogout() {
   useStorage().removeItems(TOKEN_KEY, USERINFO_KEY)
   await navigateTo('/login', { replace: true })
   message.success({ content: '请重新登录', duration: 3 })
 }
-
-watch(() => data.year, () => getGlobalData())
 </script>
 
 <template>
@@ -44,7 +44,7 @@ watch(() => data.year, () => getGlobalData())
       </div>
       <!-- years select -->
       <div class="year_selector">
-        <BaseYearSelect v-model:year="data.year" />
+        <BaseYearSelect v-model:year="year" />
       </div>
       <!-- audio player -->
       <div v-once class="audio_container">
@@ -57,12 +57,7 @@ watch(() => data.year, () => getGlobalData())
 
       <!-- kpi module -->
       <div class="kpi_container">
-        <BaseKpi
-          :total-time="data.totalTime"
-          :total-day="data.totalDay"
-          :avg-weight="data.avgWeight"
-          :avg-b-m-i="data.avgBMI"
-        />
+        <BaseKpi />
       </div>
 
       <!-- weather module -->

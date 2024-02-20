@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps(['totalTime', 'totalDay', 'avgWeight', 'avgBMI'])
+const { data } = storeToRefs(useHomePageStore())
 </script>
 
 <template>
@@ -7,7 +7,7 @@ defineProps(['totalTime', 'totalDay', 'avgWeight', 'avgBMI'])
     <div class="area_3_1">
       <div class="area_3_1_1">
         <div class="area_3_1_1_1">
-          <span class="line" />{{ totalTime ?? "--" }}min
+          <span class="line" />{{ data?.totalTime ?? "--" }}min
         </div>
         <div class="area_3_1_1_2">
           运动总时长
@@ -18,7 +18,7 @@ defineProps(['totalTime', 'totalDay', 'avgWeight', 'avgBMI'])
       </div>
       <div class="area_3_1_2">
         <div class="area_3_1_2_1">
-          <span class="line" />{{ totalDay ?? "--" }}天
+          <span class="line" />{{ data?.totalDay ?? "--" }}天
         </div>
         <div class="area_3_1_2_2">
           运动总天数
@@ -29,7 +29,7 @@ defineProps(['totalTime', 'totalDay', 'avgWeight', 'avgBMI'])
     <div class="area_3_2">
       <div class="area_3_1_1">
         <div class="area_3_1_1_1">
-          <span class="line" />{{ avgWeight ?? "--" }}kg
+          <span class="line" />{{ data?.avgWeight ?? "--" }}kg
         </div>
         <div class="area_3_1_1_2">
           平均体重
@@ -41,12 +41,12 @@ defineProps(['totalTime', 'totalDay', 'avgWeight', 'avgBMI'])
       <div class="area_3_1_2">
         <div class="area_3_1_2_1">
           <span class="line" />
-          {{ avgBMI ?? "--" }}
+          {{ data?.avgBMI ?? "--" }}
           <span class="range">
             {{
-              avgBMI === 0
+              data?.avgBMI === 0
                 ? ""
-                : avgBMI <= 18 ? "偏低" : avgBMI >= 24
+                : data?.avgBMI <= 18 ? "偏低" : data?.avgBMI >= 24
                   ? "偏高"
                   : "正常"
             }}

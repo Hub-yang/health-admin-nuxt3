@@ -142,8 +142,8 @@ export function useForm() {
 
   const submitLoading = ref(false)
   // 重新请求
-  const homePageStore = useHomePageStore()
-  const getData = () => homePageStore.getGlobalData()
+  // const homePageStore = useHomePageStore()
+  // const getData = () => homePageStore.getGlobalData()
   const resetForm = () => formRef.value.resetFields()
 
   const onFinish = (values: anyKey) => {

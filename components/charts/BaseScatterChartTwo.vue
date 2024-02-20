@@ -3,7 +3,27 @@ const echarts = ref()
 let timer: NodeJS.Timeout
 onMounted(() => timer = setTimeout(() => echarts.value.resize(), 500))
 onBeforeUnmount(() => clearTimeout(timer))
-const option = {
+
+const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
+const { year } = storeToRefs(useHomePageStore())
+const { data, pending } = await useFetch('/api/getAllChartsData', {
+  query: { uid, year },
+  watch: [year],
+  lazy: true,
+  transform: data => handleData(data),
+})
+
+function handleData(data: any) {
+  const { seriesData, xAxisData } = getChartFiveData(
+    data,
+    getdateFormated,
+  )
+  return {
+    seriesData,
+    xAxisData,
+  }
+}
+const option = computed(() => ({
   color: '#FBD379',
   tooltip: {
     trigger: 'item',
@@ -29,7 +49,7 @@ const option = {
     textStyle: {
       color: '#5A5C65',
     },
-    text: '2023',
+    text: year.value,
   },
   singleAxis: {
     right: 150,
@@ -46,20 +66,7 @@ const option = {
         width: 5,
       },
     },
-    data: [
-      '1月',
-      '2月',
-      '3月',
-      '4月',
-      '5月',
-      '6月',
-      '7月',
-      '8月',
-      '9月',
-      '10月',
-      '11月',
-      '12月',
-    ],
+    data: data.value?.xAxisData,
   },
   series: {
     animationDuration: 1200,
@@ -67,24 +74,11 @@ const option = {
     coordinateSystem: 'singleAxis',
     type: 'scatter',
     name: '总计',
-    data: [
-      3104,
-      2841,
-      2417,
-      1153,
-      2158,
-      2230,
-      1805,
-      543,
-      196,
-      6369,
-      4996,
-      740,
-    ],
+    data: data.value?.seriesData,
   },
-}
+}))
 </script>
 
 <template>
-  <BaseEcharts ref="echarts" width="100%" height="100%" :option="option" />
+  <BaseEcharts v-if="!pending" ref="echarts" :option="option" />
 </template>

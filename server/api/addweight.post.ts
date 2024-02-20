@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { pool } from '../db/createPool'
 
 export default defineEventHandler(async (event) => {
@@ -8,8 +9,10 @@ export default defineEventHandler(async (event) => {
       msg: '参数为空',
     }
   }
-  const sqlToInsert = 'INSERT INTO my_weight SET date=?, weight=?, training=?, sportTime=?, caloric=?, uid=?'
-  const params = [data?.date || '', data?.weight || '', data?.training || '', data?.sportTime || '', data?.caloric || '', data?.uid || '']
+
+  const year = dayjs.unix(data.date).format('YYYY')
+  const sqlToInsert = 'INSERT INTO my_weight SET year=?, date=?, weight=?, training=?, sportTime=?, caloric=?, uid=?'
+  const params = [year, data?.date || '', data?.weight || '', data?.training || '', data?.sportTime || '', data?.caloric || '', data?.uid || '']
 
   const [result = {}] = await pool.execute(sqlToInsert, params) as anyKey[]
   if (result?.affectedRows && result?.affectedRows > 0) {

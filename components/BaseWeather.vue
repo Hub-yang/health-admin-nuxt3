@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const weather = ref('晴')
-const temp = ref('')
+const temp = ref('--')
 onMounted(() => getWeatherData())
 function getWeatherData() {
   getWeather().then((res: any) => {
