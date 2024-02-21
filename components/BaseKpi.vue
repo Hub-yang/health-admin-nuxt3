@@ -1,13 +1,14 @@
 <script setup lang="ts">
-const { data } = storeToRefs(useHomePageStore())
+const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
+const currentData = computed(() => getKpiData(toRaw(data.value)))
 </script>
 
 <template>
-  <div class="container">
+  <div v-if="data" class="container">
     <div class="area_3_1">
       <div class="area_3_1_1">
         <div class="area_3_1_1_1">
-          <span class="line" />{{ data?.totalTime ?? "--" }}min
+          <span class="line" />{{ currentData?.totalTime ?? "--" }}min
         </div>
         <div class="area_3_1_1_2">
           运动总时长
@@ -18,7 +19,7 @@ const { data } = storeToRefs(useHomePageStore())
       </div>
       <div class="area_3_1_2">
         <div class="area_3_1_2_1">
-          <span class="line" />{{ data?.totalDay ?? "--" }}天
+          <span class="line" />{{ currentData?.totalDay ?? "--" }}天
         </div>
         <div class="area_3_1_2_2">
           运动总天数
@@ -29,7 +30,7 @@ const { data } = storeToRefs(useHomePageStore())
     <div class="area_3_2">
       <div class="area_3_1_1">
         <div class="area_3_1_1_1">
-          <span class="line" />{{ data?.avgWeight ?? "--" }}kg
+          <span class="line" />{{ currentData?.avgWeight ?? "--" }}kg
         </div>
         <div class="area_3_1_1_2">
           平均体重
@@ -41,12 +42,12 @@ const { data } = storeToRefs(useHomePageStore())
       <div class="area_3_1_2">
         <div class="area_3_1_2_1">
           <span class="line" />
-          {{ data?.avgBMI ?? "--" }}
+          {{ currentData?.avgBMI ?? "--" }}
           <span class="range">
             {{
-              data?.avgBMI === 0
+              currentData?.avgBMI === 0
                 ? ""
-                : data?.avgBMI <= 18 ? "偏低" : data?.avgBMI >= 24
+                : currentData?.avgBMI <= 18 ? "偏低" : currentData?.avgBMI >= 24
                   ? "偏高"
                   : "正常"
             }}

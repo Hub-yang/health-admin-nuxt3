@@ -94,7 +94,7 @@ export function getWeather() {
   )
 }
 
-// 获取用户数据
-export function getAllChartsData({ uid, year }: anyKey) {
-  return $fetch(`/api/getAllChartsData?uid=${uid}&year=${year}`)
+// 获取总条数
+export function getTotal({ uid, year }: anyKey) {
+  return $fetch(`/api/getTotal?uid=${uid}&year=${year}`)
 }

@@ -141,11 +141,7 @@ export function useForm() {
   ]
 
   const submitLoading = ref(false)
-  // 重新请求
-  // const homePageStore = useHomePageStore()
-  // const getData = () => homePageStore.getGlobalData()
   const resetForm = () => formRef.value.resetFields()
-
   const onFinish = (values: anyKey) => {
     submitLoading.value = true
     // 处理日期数据
@@ -158,7 +154,8 @@ export function useForm() {
     // 发送请求
     addweight(formObj).then(async (res: any) => {
       if (res.code === 200) {
-        await getData()
+        await useHomePageStore().fetchTotal()
+        await refreshNuxtData('chartDataKey')
         message.success({ content: res.msg, duration: 2 })
         submitLoading.value = false
         setTimeout(() => resetForm(), 100)

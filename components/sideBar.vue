@@ -10,8 +10,6 @@ const {
   year,
 } = storeToRefs(useHomePageStore())
 
-watch(year, () => useHomePageStore().getGlobalData())
-
 async function handleLogout() {
   useStorage().removeItems(TOKEN_KEY, USERINFO_KEY)
   await navigateTo('/login', { replace: true })

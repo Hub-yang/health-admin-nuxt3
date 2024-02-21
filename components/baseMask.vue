@@ -4,10 +4,6 @@ const show = defineModel('show', {
 })
 
 const username = toRef(() => useStorage().getItem(USERINFO_KEY)?.username ?? '--')
-function handleClickDown() {
-  show.value = false
-  useHomePageStore().getGlobalData()
-}
 </script>
 
 <template>
@@ -17,6 +13,7 @@ function handleClickDown() {
     flex-center
     bg-black:93
   >
+    <img left="61%" top="30%" absolute w-30 rotate-10 src="../assets/images/arrow-purple.gif" alt="">
     <h1
       class="mask-animation"
       cursor-pointer
@@ -24,7 +21,7 @@ function handleClickDown() {
       color-white
       font-900
       italic
-      @click.once="handleClickDown"
+      @click.once="show = false"
     >
       Hello,{{ username }}
     </h1>

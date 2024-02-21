@@ -1,16 +1,6 @@
 <script setup lang='ts'>
-const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
-const { year } = storeToRefs(useHomePageStore())
-const { data, pending } = await useFetch('/api/getAllChartsData', {
-  query: { uid, year },
-  watch: [year],
-  lazy: true,
-  transform: data => handleData(data),
-})
-
-function handleData(data: any) {
-  return getChartThreeData(data)
-}
+const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
+const currentData = computed(() => getChartThreeData(toRaw(data.value)))
 
 const option = computed(() => ({
   tooltip: {
@@ -62,11 +52,11 @@ const option = computed(() => ({
       length: 10,
       length2: 20,
     },
-    data: data.value,
+    data: currentData.value,
   },
 }))
 </script>
 
 <template>
-  <BaseEcharts v-if="!pending" :option="option" />
+  <BaseEcharts v-if="data" :option="option" />
 </template>

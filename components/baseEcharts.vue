@@ -62,7 +62,7 @@ function init() {
   }
 }
 
-// watch(() => props.option, () => draw(), { deep: true })
+watch(() => props.option, () => draw(), { deep: true })
 
 // 窗口自适应并开启过渡动画
 function resize() {

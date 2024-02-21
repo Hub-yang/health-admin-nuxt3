@@ -1,23 +1,11 @@
 <script setup lang='ts'>
-const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
-const { year } = storeToRefs(useHomePageStore())
-const { data, pending } = await useFetch('/api/getAllChartsData', {
-  query: { uid, year },
-  watch: [year],
-  lazy: true,
-  transform: data => handleData(data),
-})
-
-function handleData(data: any) {
-  const { seriesData, xAxisData } = getChartOneData(
-    data,
+const { fetchChartData } = useHomePageStore()
+const { data, pending } = await fetchChartData() as anyKey
+const currentData = computed(() => (
+  getChartOneData(
+    toRaw(data.value),
     getdateFormated,
-  )
-  return {
-    seriesData,
-    xAxisData,
-  }
-}
+  )))
 
 const option = computed(() => ({
   tooltip: {
@@ -80,7 +68,7 @@ const option = computed(() => ({
   },
   xAxis: {
     show: false,
-    data: data.value?.xAxisData,
+    data: currentData.value?.xAxisData,
   },
   yAxis: [
     {
@@ -135,7 +123,7 @@ const option = computed(() => ({
   series: [
     {
       name: '体重',
-      data: data.value?.seriesData?.[0]?.data,
+      data: currentData.value?.seriesData?.[0]?.data,
       animationDuration: 1200,
       animationDelay: 100,
       z: 1,
@@ -186,7 +174,7 @@ const option = computed(() => ({
     },
     {
       name: '热量',
-      data: data.value?.seriesData?.[1]?.data,
+      data: currentData.value?.seriesData?.[1]?.data,
       animationDuration: 1200,
       animationDelay: 100,
       z: 2,

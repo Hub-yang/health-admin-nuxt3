@@ -3,13 +3,14 @@ import { SearchOutlined } from '@ant-design/icons-vue'
 
 const {
   totalCount,
-  currentPageNum,
+  pageNum,
   data,
   searchInput,
   columns,
   searchText,
   searchedColumn,
   editableData,
+  loading,
   handleSearch,
   handleReset,
   handleDelete,
@@ -17,7 +18,6 @@ const {
   handleSave,
   handleCancel,
   getTagColor,
-  loading,
 } = useTable()
 </script>
 
@@ -185,10 +185,10 @@ const {
       </template>
     </template>
   </a-table>
-  <!-- 分页器 -->
+  <!-- paginaion -->
   <div>
     <a-pagination
-      v-model:current="currentPageNum"
+      v-model:current="pageNum"
       :total="totalCount"
       :show-size-changer="false"
       show-less-items

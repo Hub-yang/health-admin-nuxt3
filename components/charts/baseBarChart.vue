@@ -2,26 +2,11 @@
 const myChart = ref()
 const showBack = ref(false)
 
-const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
-const { year } = storeToRefs(useHomePageStore())
-const { data, pending } = await useFetch('/api/getAllChartsData', {
-  query: { uid, year },
-  watch: [year],
-  lazy: true,
-  transform: data => handleData(data),
-})
-
-function handleData(data: any) {
-  const { drilldownData, seriesData, xAxisData } = getChartTwoData(
-    data,
-    getdateFormated,
-  )
-  return {
-    drilldownData,
-    seriesData,
-    xAxisData,
-  }
-}
+const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
+const currentData = computed(() => getChartTwoData(
+  toRaw(data.value),
+  getdateFormated,
+))
 
 const option = computed(() => ({
   animationDuration: 1200,
@@ -86,7 +71,7 @@ const option = computed(() => ({
     splitLine: {
       show: false,
     },
-    data: data.value?.xAxisData,
+    data: currentData.value?.xAxisData,
   },
   yAxis: {
     type: 'value',
@@ -152,16 +137,16 @@ const option = computed(() => ({
       enabled: true,
       divideShape: 'clone',
     },
-    data: data.value?.seriesData,
+    data: currentData.value?.seriesData,
   },
   dataGroupId: '',
 }))
 
 // 下钻
 function handleClick(event: any) {
-  if (event.data && data.value?.drilldownData.length) {
+  if (event.data && currentData.value?.drilldownData.length) {
     showBack.value = true
-    const subData = data.value.drilldownData.find((data) => {
+    const subData = currentData.value.drilldownData.find((data) => {
       return data.dataGroupId === event.data.groupId
     })
     if (!subData)
@@ -308,7 +293,7 @@ function handleBack() {
 <template>
   <div class="container">
     <span v-if="showBack" i-carbon-home class="back_btn" @click.stop="handleBack" />
-    <BaseEcharts v-if="!pending" ref="myChart" :option="option" :on-click="handleClick" />
+    <BaseEcharts v-if="data" ref="myChart" :option="option" :on-click="handleClick" />
   </div>
 </template>
 

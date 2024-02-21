@@ -2,8 +2,8 @@ import { cloneDeep } from 'lodash-es'
 import dayjs from 'dayjs'
 
 export function useTable() {
-  const { totalCount } = toRefs(useHomePageStore().data)
-  const currentPageNum = ref(1)
+  const totalCount = ref(0)
+  const pageNum = ref(1)
   const data = ref<any[]>([])
   const loading = ref(false)
   const uid = computed(() => useStorage().getItem(USERINFO_KEY)?.uid || '')
@@ -73,7 +73,7 @@ export function useTable() {
   async function handleGetTableData() {
     loading.value = true
     const tableSeries = [] as any[]
-    getTableList({ uid: uid.value, year: year.value, page: currentPageNum.value, pageSize: 20 })
+    getTableList({ uid: uid.value, year: year.value, pageNum: pageNum.value, pageSize: 10 })
       .then((res: any) => {
         if (res.code === 200) {
           loading.value = false
@@ -89,7 +89,7 @@ export function useTable() {
               })
             })
             data.value = tableSeries
-            currentPageNum.value = res.tableInfo.currentPage
+            totalCount.value = res.tableInfo.total
           }
         }
         else {
@@ -120,7 +120,7 @@ export function useTable() {
       .then(async (res: any) => {
         if (res.code === 200) {
           await handleGetTableData()
-          await useHomePageStore().getGlobalData()
+          await refreshNuxtData('chartDataKey')
           message.success({ content: res.msg, duration: 2 })
         }
         else { message.error({ content: res.msg, duration: 2 }) }
@@ -145,7 +145,7 @@ export function useTable() {
     updateWeight(formObj).then(async (res: any) => {
       if (res.code === 200) {
         await handleGetTableData()
-        // await useHomePageStore().getGlobalData()
+        await refreshNuxtData('chartDataKey')
         message.success({ content: res.msg, duration: 2 })
       }
       else {
@@ -205,13 +205,12 @@ export function useTable() {
         return '#FCAD36'
     }
   }
-
   watchEffect(handleGetTableData)
-  watch(totalCount, () => handleGetTableData())
-
+  const { total } = storeToRefs(useHomePageStore())
+  watch(total, () => handleGetTableData())
   return {
     totalCount,
-    currentPageNum,
+    pageNum,
     data,
     searchInput,
     columns,

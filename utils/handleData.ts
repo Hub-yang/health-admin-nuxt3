@@ -299,3 +299,22 @@ export function getChartFiveData(res: Res, cb: Cb) {
   )
   return { seriesData, xAxisData }
 }
+
+export function getKpiData(data: Res) {
+  let totalTime = 0
+  let totalWeight = 0
+  const totalDay = data.length
+  data.forEach((item: anyKey) => {
+    totalTime += item.sporttime
+    totalWeight += item.weight
+  })
+  const avgWeight = +(totalWeight / totalDay).toFixed(1)
+  const avgBMI = +(avgWeight / 1.69 ** 2).toFixed(1)
+
+  return {
+    totalTime,
+    avgWeight,
+    avgBMI,
+    totalDay,
+  }
+}

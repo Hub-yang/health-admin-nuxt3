@@ -4,25 +4,9 @@ let timer: NodeJS.Timeout
 onMounted(() => timer = setTimeout(() => echarts.value.resize(), 500))
 onBeforeUnmount(() => clearTimeout(timer))
 
-const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
 const { year } = storeToRefs(useHomePageStore())
-const { data, pending } = await useFetch('/api/getAllChartsData', {
-  query: { uid, year },
-  watch: [year],
-  lazy: true,
-  transform: data => handleData(data),
-})
-
-function handleData(data: any) {
-  const { seriesData, xAxisData } = getChartFiveData(
-    data,
-    getdateFormated,
-  )
-  return {
-    seriesData,
-    xAxisData,
-  }
-}
+const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
+const currentData = computed(() => getChartFiveData(toRaw(data.value), getdateFormated))
 const option = computed(() => ({
   color: '#FBD379',
   tooltip: {
@@ -74,11 +58,11 @@ const option = computed(() => ({
     coordinateSystem: 'singleAxis',
     type: 'scatter',
     name: '总计',
-    data: data.value?.seriesData,
+    data: currentData.value?.seriesData,
   },
 }))
 </script>
 
 <template>
-  <BaseEcharts v-if="!pending" ref="echarts" :option="option" />
+  <BaseEcharts v-if="data" ref="echarts" :option="option" />
 </template>

@@ -1,39 +1,61 @@
 export const useHomePageStore = defineStore('homePageStore', () => {
   const { year: currentYear } = useYearSelectOptionsAuto()
-
   const year = ref(currentYear.value)
-  const data = reactive({
-    totalTime: 0,
-    totalDay: 0,
-    avgWeight: 0,
-    avgBMI: 0,
-    totalCount: 0,
-  })
+  const total = ref(0)
+  const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
 
-  async function getGlobalData() {
-    // debugger
-    const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
-    const res = await getAllChartsData({ uid, year: year.value }) as any
-    if (res && res.length) {
-      // 获取总条数
-      data.totalCount = res.length
-      // 指标
-      let totalTime = 0
-      let totalWeight = 0
-      res.forEach((item: anyKey) => {
-        totalTime += item.sporttime
-        totalWeight += item.weight
-      })
-      data.totalTime = totalTime
-      data.totalDay = res.length
-      data.avgWeight = +(totalWeight / res.length).toFixed(1)
-      data.avgBMI = +(data.avgWeight / 1.69 ** 2).toFixed(1)
+  async function fetchTotal() {
+    const data = await getTotal({ uid, year: year.value })
+    total.value = data || 0
+  }
+
+  async function fetchChartData() {
+    let previousData: any = null
+    let rollback: any = null
+    const { data, pending } = await useFetch('/api/getAllChartsData', {
+      key: CHART_DATA_FETCH_KEY,
+      query: { uid, year },
+      watch: [year],
+      onRequest() {
+        // 保存缓存数据确保请求失败时重置
+        previousData = useNuxtData(CHART_DATA_FETCH_KEY).data?.value
+      },
+      onRequestError() {
+        message.error('请求失败')
+        rollback = previousData
+      },
+      onResponseError() {
+        message.error('响应失败')
+        rollback = previousData
+      },
+    })
+
+    if (data.value && data.value.length) {
+      message.success('获取数据成功')
+      return {
+        data,
+        pending,
+      }
+    }
+    else if (Array.isArray(data.value) && !data.value.length) {
+      message.info('暂无数据，请添加')
+      return {
+        data,
+        pending,
+      }
+    }
+    else {
+      return {
+        data: rollback,
+        pending,
+      }
     }
   }
 
   return {
-    data,
+    total,
     year,
-    getGlobalData,
+    fetchChartData,
+    fetchTotal,
   }
 })
