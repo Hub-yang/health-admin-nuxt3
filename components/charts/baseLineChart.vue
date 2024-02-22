@@ -1,10 +1,15 @@
 <script setup lang='ts'>
+// #region 获取缓存，请求失败时边界处理
+const { data: previousData } = useNuxtData(CHART_DATA_FETCH_KEY)
+// #endregion
 const { data, pending } = await fetchChartData() as anyKey
-const currentData = computed(() => (
-  getChartOneData(
-    toRaw(data.value),
+const currentData = computed(() => {
+  const argData = unref(data) || unref(previousData) || []
+  return getChartOneData(
+    argData,
     getdateFormated,
-  )))
+  )
+})
 
 const option = computed(() => ({
   tooltip: {

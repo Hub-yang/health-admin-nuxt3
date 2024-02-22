@@ -6,7 +6,7 @@ onBeforeUnmount(() => clearTimeout(timer))
 
 const year = useState('year')
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
-const currentData = computed(() => getChartFiveData(toRaw(data.value), getdateFormated))
+const currentData = computed(() => getChartFiveData(unref(data), getdateFormated))
 const option = computed(() => ({
   color: '#FBD379',
   tooltip: {

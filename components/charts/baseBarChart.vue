@@ -4,7 +4,7 @@ const showBack = ref(false)
 
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
 const currentData = computed(() => getChartTwoData(
-  toRaw(data.value),
+  unref(data),
   getdateFormated,
 ))
 

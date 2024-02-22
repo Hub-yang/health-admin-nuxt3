@@ -1,4 +1,4 @@
-type Res = anyKey
+type Res = anyKey[]
 type XAxisData = string[]
 type SeriesData = anyKey[]
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
-const currentData = computed(() => getKpiData(toRaw(data.value)))
+const currentData = computed(() => getKpiData(unref(data)))
 </script>
 
 <template>
