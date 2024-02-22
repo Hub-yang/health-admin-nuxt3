@@ -154,7 +154,7 @@ export function useForm() {
     // 发送请求
     addweight(formObj).then(async (res: any) => {
       if (res.code === 200) {
-        await useHomePageStore().fetchTotal()
+        await fetchTotal().refreshTotal()
         await refreshNuxtData('chartDataKey')
         message.success({ content: res.msg, duration: 2 })
         submitLoading.value = false

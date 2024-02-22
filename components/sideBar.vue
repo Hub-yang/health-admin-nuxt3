@@ -6,10 +6,8 @@ const username = computed(() => {
     return '--'
   return username.at(0).toLocaleUpperCase() + username.substring(1).toLocaleLowerCase()
 })
-const {
-  year,
-} = storeToRefs(useHomePageStore())
 
+const year = useState('year')
 async function handleLogout() {
   useStorage().removeItems(TOKEN_KEY, USERINFO_KEY)
   await navigateTo('/login', { replace: true })

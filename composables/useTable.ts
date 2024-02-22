@@ -68,7 +68,8 @@ export function useTable() {
       align: 'center',
     },
   ]
-  const { year } = storeToRefs(useHomePageStore())
+
+  const year=useState("year")
 
   async function handleGetTableData() {
     loading.value = true
@@ -206,7 +207,7 @@ export function useTable() {
     }
   }
   watchEffect(handleGetTableData)
-  const { total } = storeToRefs(useHomePageStore())
+  const total=useState("total")
   watch(total, () => handleGetTableData())
   return {
     totalCount,

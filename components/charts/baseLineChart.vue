@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-const { fetchChartData } = useHomePageStore()
 const { data, pending } = await fetchChartData() as anyKey
 const currentData = computed(() => (
   getChartOneData(
