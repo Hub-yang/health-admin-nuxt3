@@ -65,7 +65,7 @@ async function handlerLogin(username: string, password: string) {
       uid: data?.uid ?? '',
     }
     useStorage().setItems({ [TOKEN_KEY]: data?.token ?? '', [USERINFO_KEY]: JSON.stringify(userInfo) })
-    await navigateTo('/dashboard', { replace: true })
+    await navigateTo('/welcome', { replace: true })
   }
   else { message.error(msg) }
 }

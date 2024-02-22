@@ -1,9 +1,17 @@
 <script setup lang='ts'>
-const show = defineModel('show', {
-  type: Boolean,
+definePageMeta({
+  title: '欢迎访问',
+  middleware: (to, from) => {
+    if (from.path !== '/login')
+      return navigateTo('/dashBoard', { replace: true })
+  },
 })
 
 const username = toRef(() => useStorage().getItem(USERINFO_KEY)?.username ?? '--')
+
+async function handleMaskClick() {
+  await navigateTo('/dashBoard', { replace: true })
+}
 </script>
 
 <template>
@@ -21,7 +29,7 @@ const username = toRef(() => useStorage().getItem(USERINFO_KEY)?.username ?? '--
       color-white
       font-900
       italic
-      @click.once="show = false"
+      @click="handleMaskClick"
     >
       Hello,{{ username }}
     </h1>

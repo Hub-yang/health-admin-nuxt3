@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const isCollapsed = defineModel('collapsed', { type: Boolean, default: false })
 const username = computed(() => {
-  const username = useStorage().getItem(USERINFO_KEY).username
+  const username = useStorage().getItem(USERINFO_KEY)?.username
   if (!username)
     return '--'
   return username.at(0).toLocaleUpperCase() + username.substring(1).toLocaleLowerCase()
@@ -10,8 +10,8 @@ const username = computed(() => {
 const year = useState('year')
 async function handleLogout() {
   useStorage().removeItems(TOKEN_KEY, USERINFO_KEY)
-  await navigateTo('/login', { replace: true })
   message.success({ content: '请重新登录', duration: 3 })
+  await navigateTo('/login', { replace: true })
 }
 </script>
 
