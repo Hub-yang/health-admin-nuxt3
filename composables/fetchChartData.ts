@@ -7,7 +7,7 @@ export async function fetchChartData() {
     key: CHART_DATA_FETCH_KEY,
     query: { uid, year },
     watch: [year],
-    timeout: 1000 * 1,
+    timeout: 1000 * 10,
     onRequest() {
       // 保存缓存数据确保请求失败时重置
       previousData.value = currentData.value
