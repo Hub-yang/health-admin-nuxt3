@@ -4,11 +4,11 @@ const BaseBarChart = defineAsyncComponent(() => import('./charts/BaseBarChart.vu
 </script>
 
 <template>
-  <div h="50%" relative flex bg-black>
-    <div h-full w="30%">
+  <div relative h-full flex justify-between>
+    <div w="29.2%" h-full rounded-3xl bg-base>
       <BasePieChart />
     </div>
-    <div h-full w="70%">
+    <div w="69.2%" h-full rounded-3xl bg-base>
       <BaseBarChart />
     </div>
   </div>

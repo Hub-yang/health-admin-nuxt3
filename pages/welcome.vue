@@ -7,28 +7,17 @@ definePageMeta({
   },
 })
 
-const username = toRef(() => useStorage().getItem(USERINFO_KEY)?.username ?? '--')
-
+const username = computed(() => useStorage().getItem(USERINFO_KEY)?.username ?? '--')
 async function handleMaskClick() {
   await navigateTo('/dashBoard', { replace: true })
 }
 </script>
 
 <template>
-  <div
-    h-full
-    w-full
-    flex-center
-    bg-black:93
-  >
+  <div class="h-full w-full flex-center bg-black:93">
     <img left="61%" top="30%" absolute w-30 rotate-10 src="../assets/images/arrow-purple.gif" alt="">
     <h1
-      class="mask-animation"
-      cursor-pointer
-      text-6xl
-      color-white
-      font-900
-      italic
+      class="animate-color-change-3x cursor-pointer text-6xl color-white font-900 italic"
       @click="handleMaskClick"
     >
       Hello,{{ username }}

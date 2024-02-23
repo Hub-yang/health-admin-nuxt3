@@ -1,26 +1,28 @@
 <script setup lang='ts'>
+const BaseLineChart = defineAsyncComponent(() => import('~/components/charts/BaseLineChart.vue'))
 definePageMeta({
   title: '欢迎登录',
 })
-const isCollapsed = ref(false)
 </script>
 
 <template>
-  <div
-    h-full w-full overflow-hidden
-  >
+  <div h-full w-full overflow-hidden>
     <homePageDrawer />
-    <a-layout
-      h-full
-    >
-      <a-layout-content
-        width="75%"
-      >
-        <row-one />
-        <row-two />
-        <row-three />
+    <a-layout h-full bg-base>
+      <a-layout-content bg-base py-3 pl-8>
+        <div h-full w-full flex flex-col justify-between rounded-3xl bg-main p-4>
+          <div h="28.5%" w-full rounded-3xl bg-base>
+            <BaseLineChart />
+          </div>
+          <div h="48.5%">
+            <rowTwo />
+          </div>
+          <div h="18.5%">
+            <base-scatter-diagram />
+          </div>
+        </div>
       </a-layout-content>
-      <side-bar v-model:collapsed="isCollapsed" />
+      <sideBar />
     </a-layout>
   </div>
 </template>

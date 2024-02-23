@@ -13,7 +13,7 @@ function getWeatherData() {
 </script>
 
 <template>
-  <div class="wea_container">
+  <div h-full w-full flex items-center>
     <!-- 晴 -->
     <svg
       v-if="weather === '晴'"
@@ -1126,28 +1126,13 @@ c0,0,12.9-1,13.4,15.1c0,0-1.4,10.9-11.9,13.1c0,0-12,2-13.8-2.3c-0.2,2.1-15,6-19.
         />
       </g>
     </svg>
-    <div class="wea_desc">
+    <div text-left text-3xl text-white font-bold>
       {{ weather }} | {{ temp }}℃
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-.wea_container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  // justify-content: center;
-  align-items: center;
-
-  .wea_desc {
-    text-align: left;
-    font-size: 31px;
-    color: #fff;
-    font-weight: bold;
-  }
-}
-
+<style scoped>
 svg {
   width: 100px;
 }

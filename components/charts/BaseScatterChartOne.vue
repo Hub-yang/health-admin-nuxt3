@@ -3,8 +3,6 @@ const echarts = ref()
 let timer: NodeJS.Timeout
 onMounted(() => timer = setTimeout(() => echarts.value.resize(), 500))
 onBeforeUnmount(() => clearTimeout(timer))
-
-const year = useState('year')
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
 const currentData = computed(() => getChartFourData(unref(data), getdateFormated))
 
@@ -27,17 +25,7 @@ const option = computed(() => ({
     },
     formatter: '{b}<br>{a}:{c}min',
   },
-  title: {
-    textBaseline: 'middle',
-    left: 30,
-    top: '50%',
-    textStyle: {
-      color: '#5A5C65',
-    },
-    text: year.value,
-  },
   singleAxis: {
-    left: 150,
     top: '47.5%',
     type: 'category',
     boundaryGap: false,

@@ -1,153 +1,63 @@
 <script setup lang="ts">
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
 const currentData = computed(() => getKpiData(unref(data)))
+
+const avgBMI = computed(() => {
+  let num = currentData.value?.avgBMI
+  if (!num)
+    return ''
+  num = +num
+  return num <= 18 ? '偏低' : num >= 24 ? '偏高' : '正常'
+})
 </script>
 
 <template>
-  <div v-if="data" class="container">
-    <div class="area_3_1">
-      <div class="area_3_1_1">
-        <div class="area_3_1_1_1">
-          <span class="line" />{{ currentData?.totalTime ?? "--" }}min
+  <div v-if="data" ml3 w-full>
+    <div w-full flex justify-start>
+      <div min-w-35 flex flex-col items-start>
+        <div flex-center gap-2>
+          <span bg="#f73b75" inline-block h-7 w-1 rounded-xl />
+          <span text-3xl text-white font-bold>{{ currentData?.totalTime ?? "--" }}min</span>
         </div>
-        <div class="area_3_1_1_2">
+        <div text-base-text w-full pl-4 text-4>
           运动总时长
         </div>
       </div>
-      <div class="area_3_1_line">
-        <span />
-      </div>
-      <div class="area_3_1_2">
-        <div class="area_3_1_2_1">
-          <span class="line" />{{ currentData?.totalDay ?? "--" }}天
+      <span bg="#2f313c" mr-5 block h-17 w-1 />
+      <div min-w-35 flex flex-col items-start>
+        <div flex-center gap-2>
+          <span bg="#fd982e" inline-block h-7 w-1 rounded-xl />
+          <span text-3xl text-white font-bold>{{ currentData?.totalDay ?? "--" }}天</span>
         </div>
-        <div class="area_3_1_2_2">
+        <div text-base-text w-full pl-4 text-4>
           运动总天数
         </div>
       </div>
     </div>
-    <div class="area_3_line" />
-    <div class="area_3_2">
-      <div class="area_3_1_1">
-        <div class="area_3_1_1_1">
-          <span class="line" />{{ currentData?.avgWeight ?? "--" }}kg
+    <div w="90%" border-b="4px solid #2f313c" my-1.5 />
+    <div w-full flex justify-start>
+      <div min-w-35 flex flex-col items-start>
+        <div flex-center gap-2>
+          <span bg="#31c7fc" inline-block h-7 w-1 rounded-xl />
+          <span text-3xl text-white font-bold>{{ currentData?.avgWeight ?? "--" }}kg</span>
         </div>
-        <div class="area_3_1_1_2">
+        <div text-base-text w-full pl-4 text-4>
           平均体重
         </div>
       </div>
-      <div class="area_3_1_line">
-        <span />
-      </div>
-      <div class="area_3_1_2">
-        <div class="area_3_1_2_1">
-          <span class="line" />
-          {{ currentData?.avgBMI ?? "--" }}
-          <span class="range">
-            {{
-              currentData?.avgBMI === 0
-                ? ""
-                : currentData?.avgBMI <= 18 ? "偏低" : currentData?.avgBMI >= 24
-                  ? "偏高"
-                  : "正常"
-            }}
+      <span bg="#2f313c" mr-5 block h-17 w-1 />
+      <div min-w-35 flex flex-col items-start>
+        <div flex-center gap-2>
+          <span bg="#8c2eff" inline-block h-7 w-1 rounded-xl />
+          <span text-3xl text-white font-bold>{{ currentData?.avgBMI ?? "--" }}</span>
+          <span inline-block vertical-bottom text-white>
+            {{ avgBMI }}
           </span>
         </div>
-        <div class="area_3_1_2_2">
+        <div text-base-text w-full pl-4 text-4>
           平均BMI
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.container {
-  width: 100%;
-  margin-left: 24px;
-
-  .area_3_1,
-  .area_3_2 {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .area_3_1 {
-    .area_3_1_1_1 .line {
-      background-color: #f73b75;
-    }
-
-    .area_3_1_2_1 .line {
-      background-color: #fd982e;
-    }
-  }
-
-  .area_3_2 {
-    .area_3_1_1_1 .line {
-      background-color: #31c7fc;
-    }
-
-    .area_3_1_2_1 .line {
-      background-color: #8c2eff;
-    }
-  }
-
-  .area_3_1_1,
-  .area_3_1_2 {
-    width: 169px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .area_3_1_1_1,
-  .area_3_1_2_1 {
-    width: 100%;
-    text-align: left;
-    padding-left: 17px;
-    line-height: 35px;
-
-    font-size: 31px;
-    color: #fff;
-    font-weight: bold;
-
-    .line {
-      display: inline-block;
-      height: 24px;
-      width: 5px;
-      border-radius: 3px;
-      margin-right: 10px;
-    }
-  }
-
-  .area_3_1_2_1 .range {
-    font-size: 12px;
-    display: inline-block;
-    line-height: 24px;
-    vertical-align: bottom;
-  }
-
-  .area_3_1_1_2,
-  .area_3_1_2_2 {
-    width: 100%;
-    font-size: 18px;
-    color: #76777e;
-    text-align: left;
-    padding-left: 32px;
-  }
-
-  .area_3_1_line span {
-    display: inline-block;
-    height: 52px;
-    width: 2px;
-    background-color: #2f313c;
-  }
-
-  .area_3_line {
-    width: 90%;
-    border-bottom: 3px solid #2f313c;
-    margin: 5px 0;
-  }
-}
-</style>

@@ -1,6 +1,7 @@
 import { appDescription } from './constants/index'
+
 export default defineNuxtConfig({
-  ssr: true, // 默认
+  ssr: false,
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -13,7 +14,6 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { redirect: '/login' },
   },
-
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
     // but missing on offline, disabling extraction it until fixed
@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '~/assets/styles/index.scss',
+    '~/assets/styles/index.css',
     '@unocss/reset/tailwind.css',
   ],
 
@@ -63,16 +63,6 @@ export default defineNuxtConfig({
         { name: 'description', content: appDescription },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],
-    },
-  },
-
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@use "~/assets/styles/variables.scss" as *;',
-        },
-      },
     },
   },
   devtools: {

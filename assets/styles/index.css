@@ -1,16 +1,17 @@
-@import url(./animation.scss);
-// global-presuppose
+@import url("./animation.css");
+
+/* global-presuppose */
 body {
   width: 100vw;
   height: 100vh;
-
-  #__nuxt {
-    width: 100%;
-    height: 100%;
-  }
 }
 
-// dark-presuppose
+#__nuxt {
+  width: 100%;
+  height: 100%;
+}
+
+/* dark-presuppose */
 html.dark {
   background: #222;
   color: white;
@@ -27,8 +28,22 @@ html.dark {
   filter: blur(1rem);
 }
 
+/* default-v-transition */
+.v-enter-active {
+  transition: opacity 2s ease;
+}
 
-// 进度条样式重写
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+
+/* 进度条样式重写 */
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
@@ -36,8 +51,6 @@ input[type='range']::-webkit-slider-thumb {
 input[type='range']::-webkit-slider-runnable-track {
   height: 2px;
   border-radius: 10px;
-  /*将轨道设为圆角的*/
-  // box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112;
   /*轨道内置阴影效果*/
   background-color: #6222e9;
 }
@@ -50,9 +63,6 @@ input[type='range']::-webkit-slider-thumb {
   /*使滑块超出轨道部分的偏移量相等*/
   background: #6222e9;
   border-radius: 50%;
-  /*外观设置为圆形*/
-  // border: 2px solid #5730c3;
   /*设置边框*/
   box-shadow: 0 0 5px 2px #6222e9;
-  /*添加底部阴影*/
 }

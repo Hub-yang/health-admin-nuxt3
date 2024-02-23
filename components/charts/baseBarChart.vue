@@ -291,37 +291,8 @@ function handleBack() {
 </script>
 
 <template>
-  <div class="container">
-    <span v-if="showBack" i-carbon-home class="back_btn" @click.stop="handleBack" />
+  <div relative h-full w-full flex flex-col>
+    <span v-if="showBack" right="2%" i-carbon-home absolute z-999 mt2 cursor-pointer text-white transition-duration-200 hover:text="#00fcff" hover:transition-duration-200 @click.stop="handleBack" />
     <BaseEcharts v-if="data" ref="myChart" :option="option" :on-click="handleClick" />
   </div>
 </template>
-
-<style scoped lang="scss">
-$border-radius: 30px;
-
-.container {
-  width: 100%;
-  height: 100%;
-  padding-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  background-color: #222430;
-  border-radius: $border-radius;
-  position: relative;
-}
-
-.back_btn {
-  z-index: 999;
-  color: #fff;
-  position: absolute;
-  right: 2%;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.back_btn :hover {
-  transition: all ease 0.2s;
-  color: #00fcff;
-}
-</style>

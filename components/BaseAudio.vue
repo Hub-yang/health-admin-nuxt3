@@ -60,11 +60,7 @@ function handleCoverImgError(event: any) {
 </script>
 
 <template>
-  <div
-    relative
-    h-full
-    w-full
-  >
+  <div class="relative h-full w-full">
     <audio
       ref="player"
       loop
@@ -73,8 +69,7 @@ function handleCoverImgError(event: any) {
     />
     <!-- cover -->
     <img
-      absolute left-6 top-5 h-10 w-10 animate-spin animate-duration-6s
-      rounded="50%"
+      class="absolute left-6 top-5 h-10 w-10 animate-spin animate-duration-6s rounded-50%"
       :style="{
         animationPlayState: playing ? 'running' : 'paused',
       }"
@@ -83,53 +78,34 @@ function handleCoverImgError(event: any) {
     >
 
     <!-- info -->
-    <div
-      absolute
-      left-18
-      top-6
-      flex="~"
-      flex-col
-      items-start
-    >
-      <span
-        text-3
-        color-white
-      >
+    <div class="absolute left-18 top-6 flex flex-col items-start">
+      <span class="text-3 color-white">
         {{ playList[playIndex].playTitle }}
       </span>
-      <span
-        text-2.5
-        color-gray
-      >
+      <span class="text-2.5 color-gray">
         {{ playList[playIndex].player }}
       </span>
     </div>
 
     <!-- progress bar -->
-    <div absolute w="85%" bottom-2 left="50%" translate-x="-50%">
+    <div class="absolute bottom-2 left-50% w-85% translate-x--50%">
       <input
-        ref="range" w-full cursor-pointer appearance-none
-        rounded-1
+        ref="range"
+        class="w-full cursor-pointer appearance-none rounded-1"
         type="range"
         min="0"
         value="0"
         max="100"
         @change="handleRangeChange"
       >
-      <div mx-auto my-0>
-        <span float-left text-2.7 color-gray:60>{{ curTime }}</span>
-        <span float-right text-2.7 color-gray:60>{{ totalTime }}</span>
+      <div class="mxa my0">
+        <span class="float-left text-2.7 color-gray:60">{{ curTime }}</span>
+        <span class="float-right text-2.7 color-gray:60">{{ totalTime }}</span>
       </div>
     </div>
 
     <!-- controller -->
-    <div
-      absolute
-      right-6
-      top-5
-      flex-center
-      gap-1
-    >
+    <div class="absolute right-6 top-5 flex-center gap-1">
       <button
         i-carbon-skip-back-filled disabled:corsor-not-allowed color-white disabled:color-gray:60
         :disabled="!playIndex"
@@ -145,8 +121,8 @@ function handleCoverImgError(event: any) {
         <span v-else i-carbon-pause h-5 w-5 color-white @click="handlePlay" />
       </div>
       <button
-
-        i-carbon-skip-forward-filled disabled:corsor-not-allowed color-white disabled:color-gray:60
+        i-carbon-skip-forward-filled
+        class="disabled:corsor-not-allowed color-white disabled:color-gray:60"
         :disabled="playIndex === playList.length - 1"
         @click="handlePlayNext"
       />
