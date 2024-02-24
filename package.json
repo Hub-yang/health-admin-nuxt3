@@ -18,7 +18,8 @@
     "echarts": "^5.4.3",
     "jsonwebtoken": "^9.0.2",
     "lodash-es": "^4.17.21",
-    "mysql2": "^3.9.1"
+    "mysql2": "^3.9.1",
+    "qiniu": "^7.11.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",

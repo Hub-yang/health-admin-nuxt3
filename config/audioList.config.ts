@@ -30,7 +30,7 @@ export const playList: any[] = [
     cover: 'https://mochenghualei.com.cn/covers/%E3%80%8AHead%20In%20The%20Clouds%E3%80%8Bcover.jpg',
   },
   {
-    playUrl: 'https://mochenghualei.com.cn/audios/G.E.M.%E9%82%93%E7%B4%AB%E6%A3%8B-%E8%AE%A9%E4%B8%96%E7%95%8C%E6%9A%82%E5%81%9C%E4%B8%80%E5%88%86%E9%92%9F.mp3',
+    playUrl: 'https://mochenghualei.com.cn/audios/%E9%82%93%E7%B4%AB%E6%A3%8B/G.E.M.%E9%82%93%E7%B4%AB%E6%A3%8B-%E8%AE%A9%E4%B8%96%E7%95%8C%E6%9A%82%E5%81%9C%E4%B8%80%E5%88%86%E9%92%9F.flac',
     playTitle: '让世界暂停一分钟',
     player: '邓紫棋',
     cover: 'https://mochenghualei.com.cn/covers/%E3%80%8A%E8%AE%A9%E4%B8%96%E7%95%8C%E6%9A%82%E5%81%9C%E4%B8%80%E5%88%86%E9%92%9F%E3%80%8Bcover.jpg',

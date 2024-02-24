@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { playList } from '~/config/audioList.config'
+import { playList as list } from '~/config/audioList.config'
+
+const params = encodeURIComponent('audios/邓紫棋/')
+const data = await $fetch(`/api/getAudioList?prefix=${params}`) as any[]
+
+const playList = [...data, ...list]
 
 const curTime = ref('00:00')
 const totalTime = ref('00:00')
