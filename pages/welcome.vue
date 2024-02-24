@@ -17,7 +17,7 @@ async function handleMaskClick() {
   <div class="h-full w-full flex-center bg-black:93">
     <img left="61%" top="30%" absolute w-30 rotate-10 src="../assets/images/arrow-purple.gif" alt="">
     <h1
-      class="animate-color-change-3x cursor-pointer text-6xl color-white font-900 italic"
+      class="cursor-pointer text-6xl color-white font-900 italic animate-color-change-3x"
       @click="handleMaskClick"
     >
       Hello,{{ username }}
