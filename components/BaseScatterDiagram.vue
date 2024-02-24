@@ -39,7 +39,7 @@ const baseTitleBg = computed(() => activeIndex.value === 1 ? '#7731CC' : '#D0B06
           <BaseScatterChartOne v-if="activeIndex === 1" />
           <span
             v-else
-            class="i-solar-double-alt-arrow-right-linear block h-full cursor-pointer text-xl text-white transition-all-300 hover:text-2xl"
+            class="i-solar-double-alt-arrow-right-linear block h-full cursor-pointer text-xl text-white transition-all-300 hover:text-#D0B06B"
           />
         </transition>
       </div>
@@ -52,7 +52,7 @@ const baseTitleBg = computed(() => activeIndex.value === 1 ? '#7731CC' : '#D0B06
           <BaseScatterChartTwo v-if="activeIndex === 2" />
           <span
             v-else
-            class="i-solar-double-alt-arrow-left-linear block h-full cursor-pointer text-xl text-white transition-all-300 hover:text-2xl"
+            class="i-solar-double-alt-arrow-left-linear block h-full cursor-pointer text-xl text-white transition-all-300 hover:text-#7731CC"
           />
         </transition>
       </div>

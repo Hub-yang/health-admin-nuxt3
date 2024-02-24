@@ -8,6 +8,9 @@ const currentData = computed(() => getChartTwoData(
   getdateFormated,
 ))
 
+const year = useState('year')
+watch(year, () => showBack.value = false)
+
 const option = computed(() => ({
   animationDuration: 1200,
   animationDelay: 200,
@@ -292,7 +295,7 @@ function handleBack() {
 
 <template>
   <div relative h-full w-full flex flex-col>
-    <span v-if="showBack" right="2%" i-carbon-home absolute z-999 mt2 cursor-pointer text-white transition-duration-200 hover:text="#00fcff" hover:transition-duration-200 @click.stop="handleBack" />
+    <span v-if="showBack" class="i-solar:arrow-to-down-left-bold absolute right-2% top-2% z-999 mt2 rotate-90 cursor-pointer text-xl text-white transition-duration-200 hover:text-#00fcff hover:transition-duration-200" @click.stop="handleBack" />
     <BaseEcharts v-if="data" ref="myChart" :option="option" :on-click="handleClick" />
   </div>
 </template>

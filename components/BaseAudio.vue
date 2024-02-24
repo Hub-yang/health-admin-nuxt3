@@ -119,8 +119,10 @@ function handleCoverImgError(event: any) {
         to="#6222e9"
         h-10 w-10 flex-center cursor-pointer bg-gradient-to-br outline-none
       >
-        <span v-if="!playing" i-carbon-play h-5 w-5 color-white @click="handlePlay" />
-        <span v-else i-carbon-pause h-5 w-5 color-white @click="handlePlay" />
+        <transition>
+          <span v-if="!playing" i-carbon-play h-5 w-5 color-white @click="handlePlay" />
+          <span v-else i-carbon-pause h-5 w-5 color-white @click="handlePlay" />
+        </transition>
       </div>
       <button
         i-carbon-skip-forward-filled
