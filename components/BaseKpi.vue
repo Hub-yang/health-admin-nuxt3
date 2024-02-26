@@ -14,39 +14,39 @@ const avgBMI = computed(() => {
 <template>
   <div v-if="data" ml3 w-full>
     <div w-full flex justify-start>
-      <div min-w-35 flex flex-col items-start>
+      <div min-w-30 flex flex-col items-start>
         <div flex-center gap-2>
           <span bg="#f73b75" inline-block h-7 w-1 rounded-xl />
           <span text-3xl text-white font-bold>{{ currentData?.totalTime ?? "--" }}min</span>
         </div>
-        <div text-base-text w-full pl-4 text-4>
+        <div w-full pl-4 text-4 text-base-text>
           运动总时长
         </div>
       </div>
-      <span bg="#2f313c" mr-5 block h-17 w-1 />
-      <div min-w-35 flex flex-col items-start>
+      <span bg="#2f313c" mx-4 block h-17 w-1 />
+      <div min-w-30 flex flex-col items-start>
         <div flex-center gap-2>
           <span bg="#fd982e" inline-block h-7 w-1 rounded-xl />
           <span text-3xl text-white font-bold>{{ currentData?.totalDay ?? "--" }}天</span>
         </div>
-        <div text-base-text w-full pl-4 text-4>
+        <div w-full pl-4 text-4 text-base-text>
           运动总天数
         </div>
       </div>
     </div>
     <div w="90%" border-b="4px solid #2f313c" my-1.5 />
     <div w-full flex justify-start>
-      <div min-w-35 flex flex-col items-start>
+      <div min-w-30 flex flex-col items-start>
         <div flex-center gap-2>
           <span bg="#31c7fc" inline-block h-7 w-1 rounded-xl />
           <span text-3xl text-white font-bold>{{ currentData?.avgWeight ?? "--" }}kg</span>
         </div>
-        <div text-base-text w-full pl-4 text-4>
+        <div w-full pl-4 text-4 text-base-text>
           平均体重
         </div>
       </div>
-      <span bg="#2f313c" mr-5 block h-17 w-1 />
-      <div min-w-35 flex flex-col items-start>
+      <span bg="#2f313c" mx-4 block h-17 w-1 />
+      <div min-w-30 flex flex-col items-start>
         <div flex-center gap-2>
           <span bg="#8c2eff" inline-block h-7 w-1 rounded-xl />
           <span text-3xl text-white font-bold>{{ currentData?.avgBMI ?? "--" }}</span>
@@ -54,7 +54,7 @@ const avgBMI = computed(() => {
             {{ avgBMI }}
           </span>
         </div>
-        <div text-base-text w-full pl-4 text-4>
+        <div w-full pl-4 text-4 text-base-text>
           平均BMI
         </div>
       </div>
