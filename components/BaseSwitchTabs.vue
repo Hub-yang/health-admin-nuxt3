@@ -23,7 +23,7 @@ function getOverlayClass() {
 </script>
 
 <template>
-  <div bg-main border-color-main relative h-full w-full flex overflow-hidden border-10 rounded-3xl>
+  <div relative h-full w-full flex overflow-hidden border-10 border-color-main rounded-3xl bg-main>
     <div
       v-for="(item, i) in items"
       :key="i"

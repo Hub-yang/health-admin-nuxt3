@@ -66,7 +66,7 @@ echarts.use([
   GraphicComponent,
   VisualMapComponent,
   GeoComponent,
-  SingleAxisComponent
+  SingleAxisComponent,
 ])
 
 export default echarts

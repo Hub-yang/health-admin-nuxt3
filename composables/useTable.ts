@@ -69,7 +69,7 @@ export function useTable() {
     },
   ]
 
-  const year=useState("year")
+  const year = useState('year')
 
   async function handleGetTableData() {
     loading.value = true
@@ -207,7 +207,7 @@ export function useTable() {
     }
   }
   watchEffect(handleGetTableData)
-  const total=useState("total")
+  const total = useState('total')
   watch(total, () => handleGetTableData())
   return {
     totalCount,

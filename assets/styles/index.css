@@ -1,4 +1,4 @@
-@import url("./animation.css");
+@import url('./animation.css');
 
 /* global-presuppose */
 body {
@@ -41,7 +41,6 @@ html.dark {
 .v-leave-to {
   opacity: 0;
 }
-
 
 /* 进度条样式重写 */
 input[type='range']::-webkit-slider-thumb {
