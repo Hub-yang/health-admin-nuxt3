@@ -2,6 +2,11 @@
   "type": "module",
   "private": true,
   "packageManager": "pnpm@8.12.0",
+  "author": {
+    "name": "HuberyYang",
+    "email": "mochenghualeishuai@gmail.com"
+  },
+  "license": "MIT",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
@@ -17,19 +22,17 @@
   },
   "dependencies": {
     "@ant-design-vue/nuxt": "^1.4.1",
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
     "@types/jsonwebtoken": "^9.0.5",
     "echarts": "^5.4.3",
-    "husky": "^9.0.11",
     "jsonwebtoken": "^9.0.2",
-    "lint-staged": "^15.2.2",
     "lodash-es": "^4.17.21",
     "mysql2": "^3.9.1",
     "qiniu": "^7.11.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
     "@iconify-json/carbon": "^1.1.30",
     "@iconify-json/solar": "^1.1.9",
     "@iconify-json/twemoji": "^1.1.15",
@@ -42,6 +45,8 @@
     "eslint": "npm:eslint-ts-patch@8.55.0-1",
     "eslint-plugin-format": "^0.1.0",
     "eslint-ts-patch": "8.55.0-1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "npm": "^10.4.0",
     "nuxt": "^3.10.2",
     "typescript": "^5.3.3",
@@ -51,7 +56,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "commit-msg": "pnpm commitlint --edit $1"
+      "commit-msg": "commitlint --edit $1"
     }
   },
   "lint-staged": {
