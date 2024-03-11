@@ -99,6 +99,7 @@ export function useTable() {
         }
       })
       .catch(err => new Error(err))
+      .finally(() => loading.value = false)
   }
 
   function handleSearch(selectedKeys: string[], confirm: () => void, dataIndex: string) {

@@ -21,7 +21,7 @@ async function handleLogout() {
   >
     <div mt-2 h-full flex flex-1 flex-col items-center justify-between>
       <div class="w-full flex items-center justify-between slide-in-blurred-400">
-        <div class="whitespace-normal text-center text-6 font-bad animate-welcome-text all:transition-2">
+        <div class="max-w-40 whitespace-normal text-center text-6 font-bad animate-welcome-text all:transition-2">
           Welcome, {{ username }}
         </div>
         <BaseYearSelect v-model:year="year" />

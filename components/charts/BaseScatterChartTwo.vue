@@ -5,6 +5,11 @@ onMounted(() => timer = setTimeout(() => echarts.value.resize(), 500))
 onBeforeUnmount(() => clearTimeout(timer))
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
 const currentData = computed(() => getChartFiveData(unref(data), getdateFormated))
+const max = computed(() => Math.max(...currentData.value.seriesData))
+const min = computed(() => Math.min(...currentData.value.seriesData))
+function getItemSize(x: number): number {
+  return (x - min.value) / (max.value - min.value) * (150 - 20) + 20
+}
 const option = computed(() => ({
   color: '#FBD379',
   tooltip: {
@@ -39,7 +44,7 @@ const option = computed(() => ({
         width: 5,
       },
     },
-    data: data.value?.xAxisData,
+    data: currentData.value?.xAxisData,
   },
   series: {
     animationDuration: 1200,
@@ -48,6 +53,7 @@ const option = computed(() => ({
     type: 'scatter',
     name: '总计',
     data: currentData.value?.seriesData,
+    symbolSize: (data: number) => getItemSize(data),
   },
 }))
 </script>
