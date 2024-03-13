@@ -32,17 +32,17 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
-  // nitro: {
-  //   esbuild: {
-  //     options: {
-  //       target: 'esnext',
-  //     },
-  //   },
-  //   prerender: {
-  //     crawlLinks: false,
-  //     routes: ['/'],
-  //   },
-  // },
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
+    prerender: {
+      crawlLinks: false,
+      routes: ['/'],
+    },
+  },
 
   app: {
     // pageTransition: {

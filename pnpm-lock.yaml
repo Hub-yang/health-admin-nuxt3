@@ -25,7 +25,7 @@ dependencies:
     version: 3.9.2
   qiniu:
     specifier: ^7.11.0
-    version: 7.11.0
+    version: 7.11.1
 
 devDependencies:
   '@antfu/eslint-config':
@@ -2347,11 +2347,11 @@ packages:
   /@types/lodash-es@4.17.12:
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
     dependencies:
-      '@types/lodash': 4.14.202
+      '@types/lodash': 4.17.0
     dev: true
 
-  /@types/lodash@4.14.202:
-    resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
+  /@types/lodash@4.17.0:
+    resolution: {integrity: sha512-t7dhREVv6dbNj0q17X12j7yDG4bD/DHYX7o5/DbDxobP0HnGPgpRz2Ej77aL7TZT3DSw13fqUTj8J4mMnqa7WA==}
     dev: true
 
   /@types/mdast@3.0.15:
@@ -2583,42 +2583,42 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@unhead/dom@1.8.13:
-    resolution: {integrity: sha512-BWqtatmrcrT+rN/FBZ/Il7mW0TuPlS4bXrsZewAVanOPU3ahr+sHAIUDJmDjziBjSUsO5wLOEYXA+4t08AZnrQ==}
+  /@unhead/dom@1.8.14:
+    resolution: {integrity: sha512-snh16hAT9spt9JW2ZSD3ar8V7k2EgiVIZ/iuZcbBCr9WfZosRRHROZHqo1l5hOaw8LH0jwbbhihHoYccF+qTJg==}
     dependencies:
-      '@unhead/schema': 1.8.13
-      '@unhead/shared': 1.8.13
+      '@unhead/schema': 1.8.14
+      '@unhead/shared': 1.8.14
     dev: true
 
-  /@unhead/schema@1.8.13:
-    resolution: {integrity: sha512-38SMOv/RaTtldOJx2/Mezlg3xlMeAAFtyI+M7vwj8Qb0xAosRc804ct3Xta5ecFMe9bEXQbZWEIKydU6ZV6B7w==}
+  /@unhead/schema@1.8.14:
+    resolution: {integrity: sha512-aM+syNezIXxCPJ99eG1WeONedfGXLAEGua3j+3+4GTjtH2T06E3SH6fcaHdfgjihnvMvo+C/lj2/rI6ShTVGLw==}
     dependencies:
       hookable: 5.5.3
       zhead: 2.2.4
     dev: true
 
-  /@unhead/shared@1.8.13:
-    resolution: {integrity: sha512-NV/quz31oqkITx+Epwzgf01AaYMPTzvkEdg9jvGltTWeSHWKtowUeTRPfWUc3TTPtCzrYgHQQjGN8YOHdWjC7Q==}
+  /@unhead/shared@1.8.14:
+    resolution: {integrity: sha512-ZuPfT7UKBIhb/E6+aVKPHwmAZUgja3YE4jc2p5K+eNTAGJD3MrNWmjRAA76ZUbKabdiYDr9/6mYWMdMWK0O87Q==}
     dependencies:
-      '@unhead/schema': 1.8.13
+      '@unhead/schema': 1.8.14
     dev: true
 
-  /@unhead/ssr@1.8.13:
-    resolution: {integrity: sha512-4GzpVlwJn8HRa6YE+9UuABf3XSe1WvcqLOWszCJiD3oUaFCZ2jqrVXS4v/jhJ6bAm7LTHrfT7Znyw4nQG57/XQ==}
+  /@unhead/ssr@1.8.14:
+    resolution: {integrity: sha512-F9DBvEb88f+Dfgg5iitkLIxOdxZniHeZzTlQVgblsJkbfbLmc/ckZOboB8M6bZr7AuKQ8lSA0Sg7JLsRkmH02w==}
     dependencies:
-      '@unhead/schema': 1.8.13
-      '@unhead/shared': 1.8.13
+      '@unhead/schema': 1.8.14
+      '@unhead/shared': 1.8.14
     dev: true
 
-  /@unhead/vue@1.8.13(vue@3.4.21):
-    resolution: {integrity: sha512-2CIwSeadfJxFfY44nz7U+w/F7lg646aw2t8G58P4A08t6KtPRoAVA0cR0iX+yqQEZIAKYEoaNINv3p/GMxyvBw==}
+  /@unhead/vue@1.8.14(vue@3.4.21):
+    resolution: {integrity: sha512-H0UOmQ3mmTHG04vzgI9NuTA20HH2YBfLvoA/AyVKlaDhy98bR81sBRWWrlUSixNh3YCZycJMf4pXJvcLVYKYZg==}
     peerDependencies:
       vue: '>=2.7 || >=3'
     dependencies:
-      '@unhead/schema': 1.8.13
-      '@unhead/shared': 1.8.13
+      '@unhead/schema': 1.8.14
+      '@unhead/shared': 1.8.14
       hookable: 5.5.3
-      unhead: 1.8.13
+      unhead: 1.8.14
       vue: 3.4.21(typescript@5.4.2)
     dev: true
 
@@ -3725,7 +3725,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001597
-      electron-to-chromium: 1.4.701
+      electron-to-chromium: 1.4.702
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
 
@@ -4585,8 +4585,8 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /electron-to-chromium@1.4.701:
-    resolution: {integrity: sha512-K3WPQ36bUOtXg/1+69bFlFOvdSm0/0bGqmsfPDLRXLanoKXdA+pIWuf/VbA9b+2CwBFuONgl4NEz4OEm+OJOKA==}
+  /electron-to-chromium@1.4.702:
+    resolution: {integrity: sha512-LYLXyEUsZ3nNSwiOWjI88N1PJUAMU2QphQSgGLVkFnb3FxZxNui2Vzi2PaKPgPWbsWbZstZnh6BMf/VQJamjiQ==}
 
   /emoji-regex@10.3.0:
     resolution: {integrity: sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==}
@@ -7051,7 +7051,7 @@ packages:
       node-fetch-native: 1.6.2
       ofetch: 1.3.3
       ohash: 1.1.3
-      openapi-typescript: 6.7.4
+      openapi-typescript: 6.7.5
       pathe: 1.1.2
       perfect-debounce: 1.0.0
       pkg-types: 1.0.3
@@ -7383,9 +7383,9 @@ packages:
       '@nuxt/ui-templates': 1.3.1
       '@nuxt/vite-builder': 3.10.3(@types/node@20.11.26)(eslint-ts-patch@8.55.0-1)(typescript@5.4.2)(vue-tsc@1.8.27)(vue@3.4.21)
       '@types/node': 20.11.26
-      '@unhead/dom': 1.8.13
-      '@unhead/ssr': 1.8.13
-      '@unhead/vue': 1.8.13(vue@3.4.21)
+      '@unhead/dom': 1.8.14
+      '@unhead/ssr': 1.8.14
+      '@unhead/vue': 1.8.14(vue@3.4.21)
       '@vue/shared': 3.4.21
       acorn: 8.11.3
       c12: 1.10.0
@@ -7546,8 +7546,8 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
-  /openapi-typescript@6.7.4:
-    resolution: {integrity: sha512-EZyeW9Wy7UDCKv0iYmKrq2pVZtquXiD/YHiUClAKqiMi42nodx/EQH11K6fLqjt1IZlJmVokrAsExsBMM2RROQ==}
+  /openapi-typescript@6.7.5:
+    resolution: {integrity: sha512-ZD6dgSZi0u1QCP55g8/2yS5hNJfIpgqsSGHLxxdOjvY7eIrXzj271FJEQw33VwsZ6RCtO/NOuhxa7GBWmEudyA==}
     hasBin: true
     dependencies:
       ansi-colors: 4.1.3
@@ -8217,8 +8217,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /qiniu@7.11.0:
-    resolution: {integrity: sha512-Pdux9AxQR5V8IrlkSWDBUIrBRoxyK98sfmdGm19R0jZyxBMM2+KMwB0zhjAJhb6+lxEzjyHO3EfsVRz0JeTj7A==}
+  /qiniu@7.11.1:
+    resolution: {integrity: sha512-Y+/LQqXW0DrtiLLTL8CQEO0XD4w1vKR7eDp2dXvJj+4uVNKA++1LeVQHTPYLJTBitR4jFCd6pJGD7q6QDl9KQA==}
     engines: {node: '>= 6'}
     dependencies:
       agentkeepalive: 4.5.0
@@ -9296,12 +9296,12 @@ packages:
       extend-shallow: 2.0.1
     dev: false
 
-  /unhead@1.8.13:
-    resolution: {integrity: sha512-VL1eOXc1U0zI6XO2JJQ98tywcEW9cM6tfrmuNcltOKSB7Xg3isVXFSf2bEbO4XPUjg8D5Uy3Q3Zi9cN9XSiTyA==}
+  /unhead@1.8.14:
+    resolution: {integrity: sha512-yw2E89ORS0pjXk14ZXWfnCEuntGIR+dxQjLWLUBn7p1T7RuGJVdWFy4KJiIjQYzGfhjBexVscSG2s+Bt1BYTWA==}
     dependencies:
-      '@unhead/dom': 1.8.13
-      '@unhead/schema': 1.8.13
-      '@unhead/shared': 1.8.13
+      '@unhead/dom': 1.8.14
+      '@unhead/schema': 1.8.14
+      '@unhead/shared': 1.8.14
       hookable: 5.5.3
     dev: true
 
