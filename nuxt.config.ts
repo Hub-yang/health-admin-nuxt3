@@ -1,12 +1,13 @@
 import { appDescription } from './constants/index'
 
 export default defineNuxtConfig({
-  ssr: false,
+  // ssr: true
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
     '@ant-design-vue/nuxt',
+    'dayjs-nuxt',
   ],
   imports: {
     dirs: ['utils/*.{ts,js}', 'api/*.{ts,js}', 'constants/**.{ts,js}', 'stores/**.{ts,js}'],
