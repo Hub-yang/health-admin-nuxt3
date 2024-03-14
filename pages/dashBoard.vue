@@ -6,8 +6,8 @@ definePageMeta({
 </script>
 
 <template>
-  <ClientOnly>
-    <div h-full w-full overflow-hidden>
+  <div h-full w-full overflow-hidden>
+    <ClientOnly>
       <homePageDrawer />
       <a-layout h-full bg-base>
         <a-layout-content bg-base py-3 pl-8>
@@ -25,6 +25,6 @@ definePageMeta({
         </a-layout-content>
         <sideBar />
       </a-layout>
-    </div>
-  </ClientOnly>
+    </ClientOnly>
+  </div>
 </template>

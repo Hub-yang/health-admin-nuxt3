@@ -5,6 +5,11 @@ useHead({
   title: useRoute().meta.title || appName,
 })
 
+// ant-message global config
+message.config({
+  maxCount: 1,
+})
+
 // app中立即初始化useState，防止服务端渲染警告
 useState('year', () => `${new Date().getFullYear()}`)
 const isOnline = useOnline()
