@@ -5,6 +5,8 @@ useHead({
   title: useRoute().meta.title || appName,
 })
 
+// app中立即初始化useState，防止服务端渲染警告
+useState('year', () => `${new Date().getFullYear()}`)
 const isOnline = useOnline()
 if (!isOnline.value)
   message.error('网络不可用，请检查网络连接')

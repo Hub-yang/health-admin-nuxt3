@@ -6,9 +6,9 @@ const activeIndex = ref(1)
 function toggleActive(index: number) {
   activeIndex.value = index
 }
+const year = useState('year')
 const title = computed(() => {
-  const year = useState('year').value ?? ''
-  return activeIndex.value === 1 ? `时长累计 : ${year}` : `热量累计 : ${year}`
+  return activeIndex.value === 1 ? `时长累计 : ${year.value}` : `热量累计 : ${year.value}`
 })
 
 const baseTitleClass = computed(() => activeIndex.value === 1 ? '5%' : '85%')

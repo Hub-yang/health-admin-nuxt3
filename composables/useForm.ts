@@ -1,9 +1,6 @@
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
 import locale from 'ant-design-vue/es/date-picker/locale/zh_CN'
+
 export function useForm() {
-  // 日期选择器国际化设置
-  dayjs.locale('zh-cn')
   const formRef = ref()
   const form = reactive<anyKey>({
     date: null,

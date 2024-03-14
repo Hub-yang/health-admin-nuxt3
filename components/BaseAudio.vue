@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
-
 const params = encodeURIComponent('audios/邓紫棋/')
 const playList = await $fetch(`/api/getAudioList?prefix=${params}`) as any[]
 
@@ -33,8 +31,8 @@ function handleTimeUpdate() {
   const rangeState = range.value as HTMLInputElement
   rangeState.max = `${playerState.duration}`
   rangeState.value = `${playerState.currentTime}`
-  totalTime.value = dayjs((playerState?.duration || 0) * 1000).format('mm:ss')
-  curTime.value = dayjs((playerState?.currentTime || 0) * 1000).format('mm:ss')
+  totalTime.value = useDateFormat((playerState?.duration || 0) * 1000, 'mm:ss').value
+  curTime.value = useDateFormat((playerState?.currentTime || 0) * 1000, 'mm:ss').value
 }
 // 拖拽进度条
 function handleRangeChange() {

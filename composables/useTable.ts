@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash-es'
-import dayjs from 'dayjs'
 
 export function useTable() {
+  const dayjs = useDayjs()
   const totalCount = ref(0)
   const pageNum = ref(1)
   const data = ref<any[]>([])
@@ -70,7 +70,6 @@ export function useTable() {
   ]
 
   const year = useState('year')
-
   async function handleGetTableData() {
     loading.value = true
     const tableSeries = [] as any[]
