@@ -8,7 +8,13 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@ant-design-vue/nuxt',
     'dayjs-nuxt',
+    '@nuxt/eslint',
   ],
+  eslint: {
+    // config: {
+    //   standalone: false,
+    // },
+  },
   imports: {
     dirs: ['utils/*.{ts,js}', 'api/*.{ts,js}', 'constants/**.{ts,js}', 'stores/**.{ts,js}'],
   },

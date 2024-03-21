@@ -1,5 +1,5 @@
 export function useStorage() {
-  function getItem(key: string): any {
+  function getItem(key: string): anyKey | string | null | undefined {
     return useCookie(key).value
   }
 

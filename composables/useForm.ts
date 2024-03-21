@@ -11,7 +11,7 @@ export function useForm() {
   })
 
   // #region validater
-  const validateDate = async (rules: any, value: any) => {
+  const validateDate = async (rules: anyKey, value: string | null) => {
     let checkPending
     clearTimeout(checkPending)
     if (!value) {
@@ -27,7 +27,7 @@ export function useForm() {
     }
   }
 
-  const validateWeight = async (rule: any, value: any) => {
+  const validateWeight = async (rule: anyKey, value: string | number | null) => {
     let checkPending
     if (!value) {
       clearTimeout(checkPending)
@@ -49,7 +49,7 @@ export function useForm() {
     }
   }
 
-  const validateTrain = async (rule: any, value: any) => {
+  const validateTrain = async (rule: anyKey, value: string | null) => {
     let checkPending
     clearTimeout(checkPending)
     if (!value?.length) {
@@ -65,7 +65,7 @@ export function useForm() {
     }
   }
 
-  const validateSportTime = async (rule: any, value: any) => {
+  const validateSportTime = async (rule: anyKey, value: string | number | null) => {
     let checkPending
     clearTimeout(checkPending)
     if (!value) {
@@ -87,7 +87,7 @@ export function useForm() {
     }
   }
 
-  const validateCaloric = async (rule: any, value: any) => {
+  const validateCaloric = async (rule: anyKey, value: string | number | null) => {
     let checkPending
     clearTimeout(checkPending)
     if (!value) {
@@ -145,11 +145,11 @@ export function useForm() {
     const formObj = {
       ...values,
       date: new Date(values.date).getTime() / 1000,
-      uid: useStorage().getItem(USERINFO_KEY)?.uid || '',
+      uid: (useStorage().getItem(USERINFO_KEY) as anyKey)?.uid || '',
     }
 
     // 发送请求
-    addweight(formObj).then(async (res: any) => {
+    addweight(formObj).then(async (res: anyKey) => {
       if (res.code === 200) {
         await fetchTotal().refreshTotal()
         await refreshNuxtData('chartDataKey')
