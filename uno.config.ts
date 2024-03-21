@@ -24,6 +24,8 @@ export default defineConfig({
   shortcuts: [
     ['flex-center', 'flex items-center justify-center'],
     ['flex-col-center', 'flex flex-col items-center justify-center'],
+    // main-title style
+    ['title-main', 'ma w-fit rounded-b-xl bg-main px-3 py-1 color-white font-bold italic'],
   ],
   rules: [
     // side-bar 动画
@@ -111,6 +113,7 @@ export default defineConfig({
       'animation': 'slide-out-blurred-right 0.45s cubic-bezier(0.755, 0.05, 0.855, 0.06) both',
     }],
     ['animate-welcome-text', { animation: 'welcome-text-animate 3s linear infinite' }],
+    ['font-Bad', { 'font-family': 'Bad' }],
   ],
   presets: [
     presetUno(),
@@ -125,7 +128,6 @@ export default defineConfig({
         serif: 'DM Serif Display',
         mono: 'DM Mono',
         pop: 'Poppins',
-        bad: 'Bad Script',
       },
     }),
   ],

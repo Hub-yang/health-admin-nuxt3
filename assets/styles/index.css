@@ -22,6 +22,7 @@ html.dark {
 .page-leave-active {
   transition: all 0.4s;
 }
+
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
@@ -64,4 +65,10 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 50%;
   /*设置边框*/
   box-shadow: 0 0 5px 2px #6222e9;
+}
+
+/* 字体预设 */
+@font-face {
+  font-family: 'Bad';
+  src: url('../fonts/BadScript-Regular.ttf');
 }

@@ -12,8 +12,11 @@ definePageMeta({
       <a-layout h-full bg-base>
         <a-layout-content bg-base py-3 pl-8>
           <div h-full w-full flex flex-col justify-between rounded-3xl bg-main p-4>
-            <div h="28.5%" w-full rounded-3xl bg-base>
-              <BaseLineChart />
+            <div h="28.5%" w-full flex flex-col rounded-3xl bg-base>
+              <div title-main>
+                体重-热量变化趋势
+              </div>
+              <BaseLineChart flex-1 />
             </div>
             <div h="48.5%">
               <rowTwo />
