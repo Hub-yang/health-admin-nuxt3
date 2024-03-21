@@ -52,19 +52,37 @@ async function handleRegister() {
   const { code, msg } = await register({ username: username.value, password: password.value })
   if (code === 200) {
     message.success(msg)
-    resetForm()
     isReg.value = false
     clearTimeout(timer as NodeJS.Timeout)
     timer = setTimeout(() => {
       keyframes.value = false
     }, 400)
   }
-  else { message.error(msg) }
+  else {
+    resetForm()
+    message.error(msg)
+  }
 }
 
+const temp = {
+  username: '',
+  password: '',
+}
 function registerOrBack() {
-  resetForm()
   isReg.value = !isReg.value
+
+  if (isReg.value) {
+    username.value && (temp.username = username.value)
+    password.value && (temp.password = password.value)
+    resetForm()
+  }
+
+  if (!isReg.value) {
+    username.value = temp.username
+    password.value = temp.password
+    temp.username = temp.password = ''
+  }
+
   if (keyframes.value) {
     clearTimeout(timer as NodeJS.Timeout)
     timer = setTimeout(() =>
@@ -118,6 +136,19 @@ const inputClass = computed(() => isReg.value ? 'animate-slide-in-blurred-left' 
 const baseTitle = computed(() => isReg.value ? '用户注册' : '用户登录')
 const loginBtnTitle = computed(() => isReg.value ? '注 册' : '登 录')
 const registerBtnTitle = computed(() => isReg.value ? '返回登录' : '立即注册')
+
+const isEnterUsername = ref(false)
+
+watch(username, (val) => {
+  if (val)
+    isEnterUsername.value = true
+  else
+    isEnterUsername.value = false
+})
+
+function clearUsername() {
+  username.value = ''
+}
 </script>
 
 <template>
@@ -128,14 +159,23 @@ const registerBtnTitle = computed(() => isReg.value ? '返回登录' : '立即�
           {{ baseTitle }}
         </p>
         <form>
-          <input
-            v-model.lazy.trim="username"
-            v-focus
-            class="base-input placeholder:color-white"
-            type="text"
-            placeholder="用户名"
-            @blur="isReg && inputBlur()"
-          >
+          <span relative block>
+            <input
+              v-model.trim="username"
+              v-focus
+              class="base-input placeholder:color-white"
+              type="text"
+              placeholder="用户名"
+              @blur="isReg && inputBlur()"
+            >
+            <span
+              v-show="isEnterUsername"
+              absolute right-2.5 top-3 block cursor-pointer
+              @click="clearUsername"
+            >
+              <CloseCircleFilled />
+            </span>
+          </span>
 
           <a-tooltip
             :open="toggleToolTip && isReg"
@@ -153,7 +193,7 @@ const registerBtnTitle = computed(() => isReg.value ? '返回登录' : '立即�
                 @focus="isReg && (toggleToolTip = true)"
               >
               <span
-                absolute right-2.5 top-3 block
+                absolute right-2.5 top-3 block cursor-pointer
                 @click="showPassWord = !showPassWord"
               >
                 <eye-filled v-if="!showPassWord" />
