@@ -13,8 +13,8 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm install
-          npm run build
+          pnpm install
+          pnpm run build
           tar -czf dist.tar.gz .output
 
       - name: Deploy to server
