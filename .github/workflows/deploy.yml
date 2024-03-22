@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: CentOS
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
