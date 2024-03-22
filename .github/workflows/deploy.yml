@@ -31,4 +31,4 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_key.pem
           chmod 600 ssh_key.pem
-          ssh -i ssh_key.pem -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
+          ssh -i ssh_key.pem ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
