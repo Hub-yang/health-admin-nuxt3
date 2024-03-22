@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 const username = computed(() => {
-  const username = useStorage().getItem(USERINFO_KEY)?.username
+  const username = (useStorage().getItem(USERINFO_KEY) as anyKey)?.username
   if (!username)
     return '--'
   return username.at(0).toLocaleUpperCase() + username.substring(1).toLocaleLowerCase()
