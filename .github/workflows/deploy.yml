@@ -15,20 +15,20 @@ jobs:
       #   echo "Not found keyword '[Deploy]' in commit message. Exiting workflow."
       #   exit 0
 
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
 
-      - name: Install dependencies and build
-        run: |
-          npx pnpm install
-          npx pnpm run build
+      # - name: Install dependencies and build
+      #   run: |
+      #     npx pnpm install
+      #     npx pnpm run build
 
       # - name: zip
       #   run: |
       #     tar -czf build.tar.gz .output
 
-      - name: Transfer build to server
-        run: scp -i ${{ secrets.SSH_PRIVATE_KEY }} package.json ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/
+      # - name: Transfer build to server
+      #   run: scp -i ${{ secrets.SSH_PRIVATE_KEY }} package.json ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/
 
       - name: SSH into server and extract build
         run: |
