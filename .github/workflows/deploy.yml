@@ -35,4 +35,4 @@ jobs:
 
       - name: SSH into server and extract build
         run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} root@82.157.148.19
