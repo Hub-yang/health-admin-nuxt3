@@ -27,12 +27,15 @@ jobs:
       #   run: |
       #     tar -czf build.tar.gz .output
 
-      # - name: Transfer build to server
-      #   run: scp -i ${{ secrets.SSH_PRIVATE_KEY }} package.json ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/
-
       - name: Install SSH client
         run: sudo apt-get update && sudo apt-get install -y openssh-client
 
+      - name: Add SSH key to known hosts
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa && ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      # - name: Transfer build to server
+      #   run: scp -i ~/.ssh/id_rsa -P ${{ secrets.SERVER_PORT }} build.tar.gz ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/path/on/server/
+
       - name: SSH into server and extract build
         run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} root@82.157.148.19
+          ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
