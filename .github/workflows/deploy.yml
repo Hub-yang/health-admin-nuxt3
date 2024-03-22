@@ -22,7 +22,7 @@ jobs:
         run: |
           npx pnpm install
           npx pnpm run build
-          tar -czf dist.tar.gz .output
+          tar -czf build.tar.gz .output
 
       - name: Transfer build to server
         run: scp -i ${{ secrets.SSH_PRIVATE_KEY }} build.tar.gz ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/
