@@ -30,6 +30,9 @@ jobs:
       # - name: Transfer build to server
       #   run: scp -i ${{ secrets.SSH_PRIVATE_KEY }} package.json ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/
 
+      - name: Install SSH client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+
       - name: SSH into server and extract build
         run: |
           ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
