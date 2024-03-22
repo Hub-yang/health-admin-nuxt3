@@ -23,16 +23,13 @@ jobs:
           npx pnpm install
           npx pnpm run build
 
-      - name: zip
-        run: |
-          tar -czf build.tar.gz .output
+      # - name: zip
+      #   run: |
+      #     tar -czf build.tar.gz .output
 
       - name: Transfer build to server
-        run: scp -i ${{ secrets.SSH_PRIVATE_KEY }} build.tar.gz ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/
+        run: scp -i ${{ secrets.SSH_PRIVATE_KEY }} package.json ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/
 
       - name: SSH into server and extract build
         run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} '
-            tar -xzf build.tar.gz
-            rm build.tar.gz
-          '
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
