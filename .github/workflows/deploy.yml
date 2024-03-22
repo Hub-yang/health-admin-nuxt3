@@ -27,8 +27,11 @@ jobs:
       #   run: |
       #     tar -czf build.tar.gz .output
 
-      - name: SSH into server and extract build
+      - name: Set up SSH connection to server
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to server
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_key.pem
-          chmod -x ssh_key.pem
-          ssh -i ssh_key.pem ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
+          ssh -o StrictHostKeyChecking=no  'echo "Hello, world!"'
