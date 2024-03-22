@@ -9,20 +9,26 @@ jobs:
 
     steps:
 
-      - name: Check commit message
-        if: contains(github.event.head_commit.message, '[deploy]') == false
-        run: |
-          echo "Not found keyword '[Deploy]' in commit message. Exiting workflow."
-          exit 0
+      # - name: Check commit message
+      # if: contains(github.event.head_commit.message, '[deploy]') == false
+      # run: |
+      #   echo "Not found keyword '[Deploy]' in commit message. Exiting workflow."
+      #   exit 0
 
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up SSH connection to server
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-
-      - name: Deploy to server
+      - name: Install dependencies and build
         run: |
-          ssh -o StrictHostKeyChecking=no -p 22 root@82.157.148.19 'echo "Hello, world!"'
+          npx pnpm install
+          npx pnpm run build
+          # tar -czf dist.tar.gz .output
+
+      # - name: Deploy to server
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     host: ${{ secrets.SERVER_HOST }}
+      #     username: ${{ secrets.SERVER_USERNAME }}
+      #     key: ${{ secrets.SERVER_SSH_KEY }}
+      #     source: dist.tar.gz
+      #     target: /dist.tar.gz
