@@ -22,6 +22,9 @@ jobs:
         run: |
           npx pnpm install
           npx pnpm run build
+
+      - name: zip
+        run: |
           tar -czf build.tar.gz .output
 
       - name: Transfer build to server
