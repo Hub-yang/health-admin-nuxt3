@@ -16,14 +16,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: Install dependencies and build
-      #   run: |
-      #     npx pnpm install
-      #     npx pnpm run build
+      - name: Install dependencies and build
+        run: |
+          npx pnpm install
+          npx pnpm run build
 
-      # - name: Compressed file
-      #   run: |
-      #     tar -czf dist.tar.gz .output
+      - name: Compressed file
+        run: |
+          tar -czf dist.tar.gz .output
 
       - name: Copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
@@ -32,8 +32,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
-          # source: dist.tar.gz
-          # target: /www/wwwroot/Nuxt3/nuxt3-health-admin
+          source: dist.tar.gz
+          target: /www/wwwroot/Nuxt3/nuxt3-health-admin
 
       - name: Exec commands
         run: |
