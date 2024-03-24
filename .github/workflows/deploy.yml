@@ -23,7 +23,7 @@ jobs:
 
       - name: Compressed file
         run: |
-          tar -czf build.tar.gz -C ./output .
+          tar -czf build.tar.gz -C .output .
 
       - name: Copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
