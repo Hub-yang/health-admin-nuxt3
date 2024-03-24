@@ -6,7 +6,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
 
       # - name: Check commit message
@@ -14,7 +13,6 @@ jobs:
       # run: |
       #   echo "Not found keyword '[Deploy]' in commit message. Exiting workflow."
       #   exit 0
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -23,19 +21,11 @@ jobs:
           npx pnpm install
           npx pnpm run build
 
-      - name: zip
+      - name: Compressed file
         run: |
           tar -czf dist.tar.gz .output
 
-      # - name: Set up SSH connection to server
-      #   uses: webfactory/ssh-agent@v0.5.4
-      #   with:
-      #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      # - name: Deploy to server
-      #   run: |
-      #     ssh -o StrictHostKeyChecking=no  ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} 'echo "Hello, world!"'
-      - name: copy file via ssh password
+      - name: Copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -43,4 +33,11 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           source: dist.tar.gz
-          target: /
+          target: /www/wwwroot/Nuxt3/nuxt3-health-admin
+
+      - name: Exec commands
+        run: |
+          cd /www/wwwroot/Nuxt3/nuxt3-health-admin/
+          rm -rf public/ server/ nitro.json
+          tar -xzf dist.tar.gz
+          # rm dist.tar.gz
