@@ -45,5 +45,5 @@ jobs:
           script: |
             cd /www/wwwroot/Nuxt3/nuxt3-health-admin/
             rm -rf public/ server/ nitro.json
-            # tar -xzf build.tar.gz
-            rm build.tar.gz
+            tar -xzf dist.tar.gz
+            rm dist.tar.gz
