@@ -15,7 +15,7 @@ async function handleLogout() {
 </script>
 
 <template>
-  <a-layout-sider class="select-none rounded-l-3xl px-6 py-5 important-bg-base" width="25%">
+  <a-layout-sider class="select-none rounded-l-3xl px-6 py-5 important-bg-base" width="400">
     <div mt-2 h-full flex flex-1 flex-col items-center justify-between>
       <div class="w-full flex items-center justify-between slide-in-blurred-400">
         <div class="max-w-40 whitespace-normal text-center text-6 animate-welcome-text font-Bad all:transition-2">

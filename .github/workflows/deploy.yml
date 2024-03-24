@@ -13,19 +13,19 @@ jobs:
       # run: |
       #   echo "Not found keyword '[Deploy]' in commit message. Exiting workflow."
       #   exit 0
-      - name: Checkout code
+      - name: Checkout code # 检查存储库的操作
         uses: actions/checkout@v4
 
-      - name: Install dependencies and build
+      - name: Install dependencies and build # 安装依赖，打包
         run: |
           npx pnpm install
           npx pnpm run build
 
-      - name: Compressed file
+      - name: Compressed file # 压缩.output目录下文件和目录
         run: |
           tar -czf dist.tar.gz -C .output .
 
-      - name: Copy file via ssh password
+      - name: Copy file via ssh password # 连接服务器并将压缩包拷贝至指定目录
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -35,7 +35,7 @@ jobs:
           source: dist.tar.gz
           target: /www/wwwroot/Nuxt3/nuxt3-health-admin
 
-      - name: SSH into server and execute commands
+      - name: SSH into server and execute commands # 连接服务器并在服务器执行操作
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
