@@ -19,7 +19,7 @@ export default defineEventHandler((event) => {
     prefix,
   }
 
-  const baseURL = 'https://mochenghualei.com.cn/'
+  const baseURL = 'https://www.huberyyang.site/'
   function handleData(data: anyKey[]) {
     if (!data || !data.length)
       return []
