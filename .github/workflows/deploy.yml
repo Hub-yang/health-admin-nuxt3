@@ -33,6 +33,7 @@ jobs:
           port: 22
           source: dist.tar.gz
           target: /www/wwwroot/nuxt3/health-admin-nuxt3
+          # test
 
       - name: SSH into server and execute commands # 连接服务器并在服务器执行操作
         uses: appleboy/ssh-action@master
