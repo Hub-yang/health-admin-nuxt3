@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import { pool } from '../db/createPool'
 
 export default defineEventHandler(async (event) => {
@@ -12,9 +13,10 @@ export default defineEventHandler(async (event) => {
     }
   }
   else {
-    const sql2 = 'INSERT INTO users ( username , password ) VALUES ( ? , ? )'
-    const [fields] = await pool.execute(sql2, [$uname, $upwd]) as any[]
-
+    // 生成uid
+    const $uid = nanoid()
+    const sql2 = 'INSERT INTO users ( username , password , uid ) VALUES ( ? , ? , ?)'
+    const [fields] = await pool.execute(sql2, [$uname, $upwd, $uid]) as any[]
     if (fields.affectedRows) {
       return {
         code: 200,

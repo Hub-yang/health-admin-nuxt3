@@ -1,4 +1,4 @@
 {
   "extends": "../.nuxt/tsconfig.server.json",
-  "exclude": ["eslint.config.js"]
+  "exclude": ["eslint.config.mjs"]
 }

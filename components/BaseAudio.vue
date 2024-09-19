@@ -8,6 +8,7 @@ const playing = ref(false)
 const playIndex = ref(0)
 const player = ref<HTMLAudioElement | null>(null)
 const range = ref<HTMLInputElement | null>(null)
+
 function handlePlayStart() {
   const playerState = player.value as HTMLAudioElement
   (!playerState.autoplay) && (playerState.autoplay = true)
