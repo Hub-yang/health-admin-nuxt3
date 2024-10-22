@@ -1,13 +1,13 @@
-import antfu from '@antfu/eslint-config'
+// @ts-check
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
-  antfu({
-    unocss: true,
-    formatters: true,
+  // Your custom configs here
+  {
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      'no-console': 'off',
+      "no-console": 'off',
       '@typescript-eslint/no-explicit-any': 'off',
-    },
-  }),
+    }
+  }
 )

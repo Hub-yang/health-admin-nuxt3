@@ -10,17 +10,24 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@nuxt/eslint',
   ],
+  alias: {
+    // 暂时解决an-design包dayjs导出报错导致的项目无法启动问题
+    dayjs: 'dayjs/esm',
+  },
   eslint: {
     // config: {
     //   standalone: false,
     // },
   },
+
   imports: {
     dirs: ['utils/*.{ts,js}', 'api/*.{ts,js}', 'constants/**.{ts,js}', 'stores/**.{ts,js}'],
   },
+
   routeRules: {
     '/': { redirect: '/login' },
   },
+
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
     // but missing on offline, disabling extraction it until fixed
@@ -72,7 +79,10 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   devtools: {
     enabled: true,
   },
+
+  compatibilityDate: '2024-09-27',
 })
