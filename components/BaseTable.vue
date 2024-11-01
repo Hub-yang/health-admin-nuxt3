@@ -29,7 +29,7 @@ const {
     :pagination="false"
     :data-source="data"
     :columns="(columns as any)"
-    :scroll="{ x: 900, y: 300 }"
+    :scroll="{ x: 900, y: 500 }"
     size="middle"
     :loading="loading"
     :row-class-name="

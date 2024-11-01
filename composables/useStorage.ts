@@ -3,7 +3,7 @@ export function useStorage() {
     return useCookie(key).value
   }
 
-  function setItems(key: string | anyKey, value?: any) {
+  function setItems(key: string | anyKey, value?: never) {
     if (typeof key === 'object' && !Object.keys(key).length)
       return false
     if (typeof key === 'string')
@@ -13,7 +13,7 @@ export function useStorage() {
     return true
   }
 
-  function removeItems(...keys: any[]) {
+  function removeItems(...keys: string[]) {
     keys = (keys || []).flat(Number.POSITIVE_INFINITY)
     keys.forEach(k => useCookie(k).value = null)
   }

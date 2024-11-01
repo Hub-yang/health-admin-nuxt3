@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { pool } from '../db/createPool'
 
 export default defineEventHandler(async (event) => {

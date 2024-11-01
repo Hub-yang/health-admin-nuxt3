@@ -98,3 +98,19 @@ export function getWeather() {
 export function getTotal({ uid, year }: anyKey) {
   return $fetch(`/api/getTotal?uid=${uid}&year=${year}`)
 }
+
+// 获取训练类型
+export function getTrainingType() {
+  return $fetch('/api/getTrainingType')
+}
+
+/**
+ * 新增训练类型
+ * @author HuberyYang
+ */
+export function addTrainingType(body = {}) {
+  return $fetch('/api/addTrainingType', {
+    method: 'POST',
+    body,
+  })
+}

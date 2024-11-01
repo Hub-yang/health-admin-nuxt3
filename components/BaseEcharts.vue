@@ -7,10 +7,11 @@ interface Props {
   option: anyKey
   width?: string // 必须指定容器的宽高，否则无法显示。（容器内图表会自动获取父元素宽高）
   height?: string
+  // eslint-disable-next-line vue/require-default-prop
   theme?: themeType
-  onMouseover?: (...args: any[]) => any
-  onMouseout?: (...args: any[]) => any
-  onClick?: (...args: any[]) => any
+  onMouseover?: (...args: never[]) => void
+  onMouseout?: (...args: never[]) => void
+  onClick?: (...args: never[]) => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -33,10 +34,10 @@ function init() {
     return false
 
   // 确保 ECharts 实例单例
-  chartInstance.value = echarts.getInstanceByDom(chartRef.value as any)
+  chartInstance.value = echarts.getInstanceByDom(chartRef.value as never) as EChartsType
   if (!chartInstance.value) {
     chartInstance.value = markRaw(
-      echarts.init(chartRef.value as any, props.theme, {
+      echarts.init(chartRef.value as never, props.theme, {
         renderer: 'canvas',
       }),
     )
@@ -44,17 +45,17 @@ function init() {
     // 事件绑定：
     if (props.onMouseover) {
       chartInstance.value.on('mouseover', (event: anyKey) => {
-        props.onMouseover(event, chartInstance.value, props.option)
+        props.onMouseover(event as never, chartInstance.value as never, props.option as never)
       })
     }
     if (props.onMouseout) {
       chartInstance.value.on('mouseout', (event: anyKey) => {
-        props.onMouseout(event, chartInstance.value, props.option)
+        props.onMouseout(event as never, chartInstance.value as never, props.option as never)
       })
     }
     if (props.onClick) {
       chartInstance.value.on('click', (event: anyKey) => {
-        props.onClick(event, chartInstance.value, props.option)
+        props.onClick(event as never, chartInstance.value as never, props.option as never)
       })
     }
 

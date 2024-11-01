@@ -5,9 +5,9 @@ type SeriesData = anyKey[]
 export function getChartOneData(res: Res, cb: Cb) {
   const seriesData: SeriesData = []
   let xAxisData: XAxisData = []
-  const dataOne: any[] = []
-  const dataTwo: any[] = []
-  res.forEach((item: any) => {
+  const dataOne: anyKey[] = []
+  const dataTwo: anyKey[] = []
+  res.forEach((item: anyKey) => {
     xAxisData.push(cb(item.date))
     dataOne.push(item.weight)
     dataTwo.push(item.caloric)
@@ -41,8 +41,8 @@ export function getChartTwoData(res: Res, cb: Cb) {
       const str = cb(item.date).split('/')[1]
       if (str === dateitem) {
         data.push([
-                    `${str}-${cb(item.date).split('/')[2]}`,
-                    item.sporttime,
+          `${str}-${cb(item.date).split('/')[2]}`,
+          item.sporttime,
         ])
       }
     })
@@ -69,60 +69,32 @@ export function getChartTwoData(res: Res, cb: Cb) {
 }
 
 export function getChartThreeData(res: Res) {
-  const typeArr: string[] = []
-  const seriesData = []
-  res.forEach((item: anyKey) => {
-    typeArr.push(...JSON.parse(item.training))
-  })
-  // 判断次数
-  let xiong = 0
-  let jian = 0
-  let bei = 0
-  let tui = 0
-  let hexin = 0
-  let ranzhi = 0
-  let shoubi = 0
-  let hiit = 0
-  typeArr.forEach((item) => {
-    switch (item) {
-      case '胸':
-        xiong++
-        break
-      case '肩':
-        jian++
-        break
-      case '背':
-        bei++
-        break
-      case '腿':
-        tui++
-        break
-      case '核心':
-        hexin++
-        break
-      case '燃脂':
-        ranzhi++
-        break
-      case '手臂':
-        shoubi++
-        break
-      case 'HIIT':
-        hiit++
-        break
-    }
-  })
-  seriesData.push(
-    { value: xiong, name: '胸' },
-    { value: jian, name: '肩' },
-    { value: bei, name: '背' },
-    { value: tui, name: '腿' },
-    { value: hexin, name: '核心' },
-    { value: ranzhi, name: '燃脂' },
-    { value: shoubi, name: '手臂' },
-    { value: hiit, name: 'HIIT' },
-  )
-  const seriesThree = seriesData.sort((a, b) => a.value - b.value)
-  return seriesThree
+  const seriesData: any[] = []
+  if (res) {
+    console.log('res :>>> ', res)
+    const countMap = new Map()
+    res.forEach((item) => {
+      try {
+        item.training = JSON.parse(item.training)[0]
+      }
+      catch(err){
+        console.log(err)
+      }
+      if (countMap.has(item.training)) {
+        countMap.set(item.training, countMap.get(item.training) + 1)
+      }
+      else {
+        countMap.set(item.training, 1)
+      }
+    })
+
+    countMap.forEach((value, name) => {
+      const item = { value, name }
+      seriesData.push(item)
+    })
+    const seriesThree = seriesData.sort((a, b) => a.value - b.value)
+    return seriesThree
+  }
 }
 
 export function getChartFourData(res: Res, cb: Cb) {

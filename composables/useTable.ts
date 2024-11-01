@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
 import { cloneDeep } from 'lodash-es'
 
 export function useTable() {
   const dayjs = useDayjs()
   const totalCount = ref(0)
   const pageNum = ref(1)
-  const data = ref<any[]>([])
+  const data = ref<anyKey[]>([])
   const loading = ref(false)
-  const uid = computed(() => useStorage().getItem(USERINFO_KEY)?.uid || '')
+  const uid = computed(() => (useStorage().getItem(USERINFO_KEY) as anyKey)?.uid || '')
   const state = reactive({
     searchText: '',
     searchedColumn: '',
   })
   const searchInput = ref()
-  const editableData = reactive<any>({})
+  const editableData = reactive<anyKey>({})
   const columns = [
     {
       title: 'Date',
@@ -72,13 +73,13 @@ export function useTable() {
   const year = useState('year')
   async function handleGetTableData() {
     loading.value = true
-    const tableSeries = [] as any[]
+    const tableSeries = [] as anyKey[]
     getTableList({ uid: uid.value, year: year.value, pageNum: pageNum.value, pageSize: 10 })
-      .then((res: any) => {
-        if (res.code === 200) {
+      .then((res:any) => {
+        if (res!.code === 200) {
           loading.value = false
           if (Object.keys(res.tableInfo).length) {
-            res.tableInfo.data.forEach((item: anyKey, index: number) => {
+            res!.tableInfo.data.forEach((item: anyKey, index: number) => {
               tableSeries.push({
                 key: index,
                 date: getdateFormated(item.date, 'datetype'),
@@ -208,7 +209,7 @@ export function useTable() {
   }
   watchEffect(handleGetTableData)
   const total = useState('total')
-  watch(total, () => handleGetTableData())
+  watch(total, async () => handleGetTableData())
   return {
     totalCount,
     pageNum,

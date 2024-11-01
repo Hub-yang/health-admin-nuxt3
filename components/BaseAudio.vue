@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const params = encodeURIComponent('audios/邓紫棋/')
-const playList = await $fetch(`/api/getAudioList?prefix=${params}`) as any[]
+const playList = await $fetch(`/api/getAudioList?prefix=${params}`) as anyKey[]
 
 const curTime = ref('00:00')
 const totalTime = ref('00:00')
@@ -11,7 +11,9 @@ const range = ref<HTMLInputElement | null>(null)
 
 function handlePlayStart() {
   const playerState = player.value as HTMLAudioElement
-  (!playerState.autoplay) && (playerState.autoplay = true)
+  if (!playerState.autoplay) {
+    playerState.autoplay = true
+  }
   playerState.play()
   playing.value = true
 }
@@ -19,7 +21,9 @@ function handlePlayStart() {
 function handlePlay() {
   const playerState = player.value as HTMLAudioElement
   // 根据paused属性判断播放状态，执行播放暂停操作
-  (!playerState.autoplay) && (playerState.autoplay = true)
+  if (!playerState.autoplay) {
+    playerState.autoplay = true
+  }
   playing.value = playerState.paused
   if (playerState.paused)
     playerState.play()
@@ -53,7 +57,7 @@ function handlePlayPrevious() {
   handlePlayStart()
 }
 
-function handleCoverImgError(event: any) {
+function handleCoverImgError(event: anyKey) {
   const img = event.srcElement
   img.src = new URL('public/error.gif', import.meta.url).href
   img.onerror = null

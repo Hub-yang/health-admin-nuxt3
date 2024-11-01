@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const echarts = ref()
 let timer: NodeJS.Timeout
-onMounted(() => timer = setTimeout(() => echarts.value.resize(), 500))
+onMounted(() => timer = setTimeout(() => echarts.value?.resize(), 500))
 onBeforeUnmount(() => clearTimeout(timer))
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
 const currentData = computed(() => getChartFiveData(unref(data), getdateFormated))

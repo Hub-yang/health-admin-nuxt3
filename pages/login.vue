@@ -1,4 +1,8 @@
+<!-- eslint-disable @typescript-eslint/no-unused-expressions -->
+<!-- eslint-disable ts/no-unused-expressions -->
 <script setup lang='ts'>
+import { CloseCircleFilled, EyeFilled, EyeInvisibleFilled } from '@ant-design/icons-vue'
+
 definePageMeta({
   title: '欢迎登录',
 })
@@ -104,7 +108,7 @@ function passwordBlur() {
 }
 
 async function inputBlur() {
-  const { code, msg } = await checkName(username.value) as any
+  const { code, msg } = await checkName(username.value) as anyKey
   if (code !== 200)
     message.error(msg)
 }
@@ -196,8 +200,8 @@ function clearUsername() {
                 absolute right-2.5 top-3 block cursor-pointer
                 @click="showPassWord = !showPassWord"
               >
-                <eye-filled v-if="!showPassWord" />
-                <eye-invisible-filled v-else />
+                <EyeFilled v-if="!showPassWord" />
+                <EyeInvisibleFilled v-else />
               </span>
             </span>
           </a-tooltip>

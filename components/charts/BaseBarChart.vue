@@ -46,7 +46,7 @@ const option = computed(() => ({
   xAxis: {
     type: 'category',
     axisLabel: {
-      color(_: any, index: number) {
+      color(_: never, index: number) {
         const colorList = [
           '#00FCFF',
           '#0091FF',
@@ -146,7 +146,7 @@ const option = computed(() => ({
 }))
 
 // 下钻
-function handleClick(event: any) {
+function handleClick(event: anyKey) {
   if (event.data && currentData.value?.drilldownData.length) {
     showBack.value = true
     const subData = currentData.value.drilldownData.find((data) => {

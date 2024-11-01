@@ -3,10 +3,10 @@ const weather = ref('晴')
 const temp = ref('--')
 onMounted(() => getWeatherData())
 function getWeatherData() {
-  getWeather().then((res: any) => {
-    if (res.code === '200') {
-      weather.value = res?.now?.text || '--'
-      temp.value = res?.now?.temp || '--'
+  getWeather().then((res: unknown) => {
+    if ((res as anyKey).code === '200') {
+      weather.value = (res as anyKey)?.now?.text || '--'
+      temp.value = (res as anyKey)?.now?.temp || '--'
     }
   })
 }

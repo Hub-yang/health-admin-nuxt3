@@ -6,7 +6,7 @@ const username = computed(() => {
   return username.at(0).toLocaleUpperCase() + username.substring(1).toLocaleLowerCase()
 })
 
-const year = useState('year')
+const year = useState<string>('year')
 async function handleLogout() {
   useStorage().removeItems(TOKEN_KEY, USERINFO_KEY)
   message.success({ content: '请重新登录', duration: 3 })

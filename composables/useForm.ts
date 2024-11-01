@@ -16,7 +16,7 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value) {
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('请选择日期！'), 500)
       })
     }
@@ -32,13 +32,13 @@ export function useForm() {
     if (!value) {
       clearTimeout(checkPending)
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('体重不能为空！'), 500)
       })
     }
     else if (Number.isNaN(+value)) {
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('请输入数字！'), 500)
       })
     }
@@ -54,7 +54,7 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value?.length) {
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('请选择训练类型！'), 500)
       })
     }
@@ -70,13 +70,13 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value) {
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('运动时长不能为空！'), 500)
       })
     }
     else if (typeof value !== 'number') {
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('请输入数字！'), 500)
       })
     }
@@ -92,13 +92,13 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value) {
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('热量不能为空！'), 500)
       })
     }
     else if (typeof value !== 'number') {
       return new Promise((resolve, reject) => {
-        // eslint-disable-next-line prefer-promise-reject-errors
+         
         checkPending = setTimeout(() => reject('请输入数字！'), 500)
       })
     }
@@ -125,17 +125,6 @@ export function useForm() {
       { required: true, validator: validateCaloric, trigger: 'change' },
     ],
   }
-
-  const trainingType = [
-    { value: '胸' },
-    { value: '核心' },
-    { value: '燃脂' },
-    { value: '手臂' },
-    { value: '腿' },
-    { value: '肩' },
-    { value: '背' },
-    { value: 'HIIT' },
-  ]
 
   const submitLoading = ref(false)
   const resetForm = () => formRef.value.resetFields()
@@ -173,7 +162,6 @@ export function useForm() {
     formRef,
     form,
     rules,
-    trainingType,
     onFinish,
     onFinishFailed,
     resetForm,
