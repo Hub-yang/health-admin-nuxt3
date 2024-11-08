@@ -22,7 +22,7 @@
     "commitlint": "commitlint --edit"
   },
   "dependencies": {
-    "@ant-design-vue/nuxt": "^1.4.1",
+    "@ant-design-vue/nuxt": "^1.4.5",
     "@ant-design/icons-vue": "^7.0.1",
     "@types/jsonwebtoken": "^9.0.6",
     "echarts": "^5.5.0",

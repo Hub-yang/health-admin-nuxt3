@@ -10,10 +10,6 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@nuxt/eslint',
   ],
-  alias: {
-    // 暂时解决an-design包dayjs导出报错导致的项目无法启动问题
-    dayjs: 'dayjs/esm',
-  },
   eslint: {
     // config: {
     //   standalone: false,

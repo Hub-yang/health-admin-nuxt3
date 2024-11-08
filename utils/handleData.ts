@@ -71,7 +71,6 @@ export function getChartTwoData(res: Res, cb: Cb) {
 export function getChartThreeData(res: Res) {
   const seriesData: any[] = []
   if (res) {
-    console.log('res :>>> ', res)
     const countMap = new Map()
     res.forEach((item) => {
       try {
