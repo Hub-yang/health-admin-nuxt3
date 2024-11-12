@@ -16,7 +16,6 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value) {
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('请选择日期！'), 500)
       })
     }
@@ -32,13 +31,11 @@ export function useForm() {
     if (!value) {
       clearTimeout(checkPending)
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('体重不能为空！'), 500)
       })
     }
     else if (Number.isNaN(+value)) {
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('请输入数字！'), 500)
       })
     }
@@ -54,7 +51,6 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value?.length) {
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('请选择训练类型！'), 500)
       })
     }
@@ -70,13 +66,11 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value) {
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('运动时长不能为空！'), 500)
       })
     }
     else if (typeof value !== 'number') {
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('请输入数字！'), 500)
       })
     }
@@ -92,13 +86,11 @@ export function useForm() {
     clearTimeout(checkPending)
     if (!value) {
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('热量不能为空！'), 500)
       })
     }
     else if (typeof value !== 'number') {
       return new Promise((resolve, reject) => {
-         
         checkPending = setTimeout(() => reject('请输入数字！'), 500)
       })
     }

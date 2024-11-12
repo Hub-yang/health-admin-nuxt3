@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-dynamic-delete */
 import { cloneDeep } from 'lodash-es'
 
 export function useTable() {
@@ -75,7 +74,7 @@ export function useTable() {
     loading.value = true
     const tableSeries = [] as anyKey[]
     getTableList({ uid: uid.value, year: year.value, pageNum: pageNum.value, pageSize: 10 })
-      .then((res:any) => {
+      .then((res: any) => {
         if (res!.code === 200) {
           loading.value = false
           if (Object.keys(res.tableInfo).length) {

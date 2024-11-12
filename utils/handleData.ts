@@ -76,7 +76,7 @@ export function getChartThreeData(res: Res) {
       try {
         item.training = JSON.parse(item.training)[0]
       }
-      catch(err){
+      catch (err) {
         console.log(err)
       }
       if (countMap.has(item.training)) {

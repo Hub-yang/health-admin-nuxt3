@@ -7,7 +7,7 @@ interface Props {
   option: anyKey
   width?: string // 必须指定容器的宽高，否则无法显示。（容器内图表会自动获取父元素宽高）
   height?: string
-  // eslint-disable-next-line vue/require-default-prop
+
   theme?: themeType
   onMouseover?: (...args: never[]) => void
   onMouseout?: (...args: never[]) => void

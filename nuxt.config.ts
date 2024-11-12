@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@ant-design-vue/nuxt',
     'dayjs-nuxt',
-    '@nuxt/eslint',
   ],
   eslint: {
     // config: {

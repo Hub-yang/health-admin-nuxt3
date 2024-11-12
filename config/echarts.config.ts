@@ -1,3 +1,5 @@
+import type { ComposeOption } from 'echarts/core'
+
 // * 需要哪些组件和配置，请在 import 时手动添加。
 import * as echarts from 'echarts/core'
 
@@ -35,8 +37,6 @@ import { LabelLayout } from 'echarts/features'
 
 // 引入 Canvas 渲染器，必须
 import { CanvasRenderer } from 'echarts/renderers'
-
-import type { ComposeOption } from 'echarts/core'
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
 export type ECOption = ComposeOption<
