@@ -1,27 +1,28 @@
+import { pool } from '../db/createPool'
+
 export default defineEventHandler(async (event) => {
   const data = await readBody(event)
-  if (!data) {
+
+  if ((Array.isArray(data) && !data.length) || !data) {
     return {
-      code: 201,
-      msg: '参数为空',
+      code: 400,
+      msg: '参数错误，请重试',
     }
   }
 
-  // const year = new Date().getFullYear()
-  // const sqlToInsert = 'INSERT INTO my_weight SET year=?, date=?, weight=?, training=?, sportTime=?, caloric=?, uid=?'
-  // const params = [year, data?.date || '', data?.weight || '', data?.training || '', data?.sportTime || '', data?.caloric || '', data?.uid || '']
+  const sqlToInsert = 'INSERT INTO training_option SET value=?'
 
-  // const [result = {}] = await pool.execute(sqlToInsert, params) as anyKey[]
-  // if (result?.affectedRows && result?.affectedRows > 0) {
-  //   return {
-  //     code: 200,
-  //     msg: '添加成功',
-  //   }
-  // }
-  // else {
-  //   return {
-  //     code: 301,
-  //     msg: '添加失败',
-  //   }
-  // }
+  const [result = {}] = await pool.execute(sqlToInsert, data) as anyKey[]
+  if (result?.affectedRows && result?.affectedRows > 0) {
+    return {
+      code: 200,
+      msg: '添加成功',
+    }
+  }
+  else {
+    return {
+      code: 301,
+      msg: '添加失败',
+    }
+  }
 })

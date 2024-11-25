@@ -114,3 +114,14 @@ export function addTrainingType(body = {}) {
     body,
   })
 }
+
+/**
+ * 删除训练类型
+ * @author HuberyYang
+ */
+export function delTrainingType(body = {}) {
+  return $fetch('/api/delTrainingType', {
+    method: 'POST',
+    body,
+  })
+}

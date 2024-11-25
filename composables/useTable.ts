@@ -208,7 +208,7 @@ export function useTable() {
   }
   watchEffect(handleGetTableData)
   const total = useState('total')
-  watch(total, async () => handleGetTableData())
+  watch(total, () => handleGetTableData())
   return {
     totalCount,
     pageNum,
