@@ -13,7 +13,7 @@ const {
 } = useForm()
 
 const uid = ref((useStorage().getItem(USERINFO_KEY) as anyKey)?.uid)
-const isVisible = ref(true)
+const isVisible = ref(false)
 function onDrawerClose() {
   resetForm()
 }
