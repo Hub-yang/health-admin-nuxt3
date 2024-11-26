@@ -1,5 +1,5 @@
 export async function fetchChartData() {
-  const uid = useStorage().getItem(USERINFO_KEY)?.uid || ''
+  const uid = (useStorage().getItem(USERINFO_KEY) as any)?.uid || ''
   const year = useState('year')
   const { data: currentData } = useNuxtData(CHART_DATA_FETCH_KEY)
   const previousData = ref([])

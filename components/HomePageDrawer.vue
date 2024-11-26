@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { delTrainingType, getTrainingType } from '~/api'
+import { addTrainingType, delTrainingType, getTrainingType, updateTrainingType } from '~/api'
 
 const {
   rules,
@@ -12,6 +12,7 @@ const {
   submitLoading,
 } = useForm()
 
+const uid = ref((useStorage().getItem(USERINFO_KEY) as anyKey)?.uid)
 const isVisible = ref(true)
 function onDrawerClose() {
   resetForm()
@@ -20,43 +21,23 @@ function onDrawerClose() {
 const activeKey = ref('1')
 
 const trainingType = ref<anyKey[]>([])
+const editTrainingType = ref('')
 
 fetchTrainingType()
 async function fetchTrainingType() {
-  trainingType.value = await getTrainingType() as anyKey[] || []
+  trainingType.value = await getTrainingType(uid.value) as anyKey[] || []
 }
 
 async function onSelectBlur() {
   const set1 = new Set(form.training)
   const set2 = new Set(trainingType.value.map(i => i.value))
-  let newItem = set1.difference(set2)
+  const newItem = set1.difference(set2)
   if (newItem.size) {
-    newItem = [...newItem] as never
+    const value = [...newItem][0]
     // 调用新增接口
-    await addTrainingType(newItem) as anyKey
+    await addTrainingType({ value, uid: uid.value }) as anyKey
     fetchTrainingType()
   }
-}
-
-/**
- * 训练类型删除操作
- */
-async function onDelConfirm(type: string) {
-  const res = await delTrainingType({ type }) as anyKey
-  if (res.code === 200) {
-    message.success({ content: res.msg, duration: 3 })
-    await fetchTrainingType()
-  }
-  else {
-    message.error({ content: res.msg, duration: 3 })
-  }
-}
-
-/**
- * 训练类型编辑操作
- */
-function onTypeEditClick() {
-
 }
 
 const open = ref(false)
@@ -80,12 +61,97 @@ const columns: any = [
   },
 ]
 
-const tableData = computed(() =>
-  trainingType.value.map(({ value }: anyKey) => ({
-    type: 'detail',
-    title: value,
-  })),
-)
+const tableData = ref<anyKey[]>([])
+
+watch(trainingType, (val: anyKey[]) => {
+  tableData.value = val.map(({ value: title, id }: anyKey, idx: number) => {
+    return {
+      idx,
+      isDetail: true,
+      title,
+      id,
+    }
+  })
+})
+
+function _resetFormState() {
+  editTrainingType.value = ''
+  tableData.value.forEach((item: anyKey) => {
+    item.isDetail = true
+  })
+}
+
+function onModalCancel() {
+  _resetFormState()
+}
+
+/**
+ * 训练类型修改点击事件
+ */
+function onTypeEditClick(idx: number) {
+  tableData.value.forEach((item: anyKey) => {
+    if (item.idx === idx) {
+      item.isDetail = !item.isDetail
+      editTrainingType.value = item.title
+    }
+  })
+}
+
+/**
+ * 训练类型删除操作
+ */
+async function onDelConfirm(id: number, type: string) {
+  const params = {
+    id,
+    type,
+    uid: uid.value,
+  }
+  const res = await delTrainingType(params) as anyKey
+  if (res.code === 200) {
+    message.success({ content: res.msg, duration: 3 })
+    await fetchTrainingType()
+    form.training = []
+    formRef.value.clearValidate('training')
+  }
+  else {
+    message.error({ content: res.msg, duration: 3 })
+  }
+}
+
+function onTypeEditCancel(idx: number) {
+  tableData.value.forEach((item: anyKey) => {
+    if (item.idx === idx) {
+      item.isDetail = true
+    }
+  })
+}
+
+/**
+ * 训练类型新修改操作
+ */
+async function onTypeSaveConfirm(id: number, value: string) {
+  const newVal = editTrainingType.value
+  if (newVal === value) {
+    _resetFormState()
+    return
+  }
+  const params = {
+    value: newVal,
+    id,
+    uid: uid.value,
+  }
+  const res = await updateTrainingType(params)
+  if (res.code === 200) {
+    message.success({ content: res.msg, duration: 3 })
+    await fetchTrainingType()
+    _resetFormState()
+    form.training = []
+    formRef.value.clearValidate('training')
+  }
+  else {
+    message.error({ content: '操作失败，请重试', duration: 3 })
+  }
+}
 </script>
 
 <template>
@@ -179,18 +245,47 @@ const tableData = computed(() =>
     </div>
   </a-drawer>
 
-  <a-modal v-model:open="open" title="训练类型维护" :footer="null">
+  <a-modal v-model:open="open" title="训练类型维护" :footer="null" @cancel="onModalCancel">
     <a-table :columns="columns" :data-source="tableData" size="small" :pagination="false">
-      <template #bodyCell="{ column, record }">
+      <template #bodyCell="{ column, record: { isDetail, title, idx, id } }">
+        <template
+          v-if="column.key === 'title'"
+        >
+          <div>
+            <a-input
+              v-if="!isDetail"
+              v-model:value="editTrainingType"
+              style="margin: -5px 0;width: 50%;"
+            />
+            <template v-else>
+              {{ title }}
+            </template>
+          </div>
+        </template>
         <template v-if="column.key === 'action'">
-          <a-button type="link" size="small" @click="onTypeEditClick">
+          <a-button v-if="isDetail" type="link" size="small" @click="onTypeEditClick(idx)">
             修改
           </a-button>
+          <template v-else>
+            <a-popconfirm
+              title="确认保存?"
+              handle-cancel-text="取消"
+              ok-text="确认"
+              @confirm="onTypeSaveConfirm(id, title)"
+            >
+              <a-button type="link" size="small">
+                保存
+              </a-button>
+            </a-popconfirm>
+            <a-button type="link" size="small" @click="onTypeEditCancel(idx)">
+              取消
+            </a-button>
+          </template>
           <a-popconfirm
-            :title="`是否删除训练类型[${record.title}]`"
+            :title="`是否删除训练类型[${title}]`"
             ok-text="是"
             cancel-text="否"
-            @confirm="onDelConfirm(record.title)"
+            @confirm="onDelConfirm(id, title)"
           >
             <a-button type="link" size="small">
               删除

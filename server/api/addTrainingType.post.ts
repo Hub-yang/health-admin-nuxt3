@@ -1,18 +1,16 @@
 import { pool } from '../db/createPool'
 
 export default defineEventHandler(async (event) => {
-  const data = await readBody(event)
-
-  if ((Array.isArray(data) && !data.length) || !data) {
+  const { value, uid } = await readBody(event)
+  if (!value || !uid) {
     return {
-      code: 400,
-      msg: '参数错误，请重试',
+      code: 201,
+      msg: '参数缺失',
     }
   }
 
-  const sqlToInsert = 'INSERT INTO training_option SET value=?'
-
-  const [result = {}] = await pool.execute(sqlToInsert, data) as anyKey[]
+  const sqlToInsert = 'INSERT INTO training_option SET value=?, uid=?'
+  const [result = {}] = await pool.execute(sqlToInsert, [value, uid]) as anyKey[]
   if (result?.affectedRows && result?.affectedRows > 0) {
     return {
       code: 200,

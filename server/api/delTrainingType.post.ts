@@ -1,16 +1,15 @@
 import { pool } from '../db/createPool'
 
 export default defineEventHandler(async (event) => {
-  const { type } = await readBody(event)
-  console.log(type)
+  const { type, uid, id } = await readBody(event)
   if (!type) {
     return {
       code: 201,
       msg: '参数为空',
     }
   }
-  const sql = 'DELETE FROM training_option WHERE value=?'
-  const [result = {}] = await pool.execute(sql, [type]) as any[]
+  const sql = 'DELETE FROM training_option WHERE value=? AND uid=? AND id = ?'
+  const [result = {}] = await pool.execute(sql, [type, uid, id]) as any[]
   if (result?.affectedRows && result?.affectedRows > 0) {
     return {
       code: 200,

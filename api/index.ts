@@ -100,8 +100,8 @@ export function getTotal({ uid, year }: anyKey) {
 }
 
 // 获取训练类型
-export function getTrainingType() {
-  return $fetch('/api/getTrainingType')
+export function getTrainingType(uid: string) {
+  return $fetch(`/api/getTrainingType?uid=${uid}`)
 }
 
 /**
@@ -121,6 +121,17 @@ export function addTrainingType(body = {}) {
  */
 export function delTrainingType(body = {}) {
   return $fetch('/api/delTrainingType', {
+    method: 'POST',
+    body,
+  })
+}
+
+/**
+ * 修改训练类型
+ * @author HuberyYang
+ */
+export function updateTrainingType(body = {}) {
+  return $fetch('/api/updateTrainingType', {
     method: 'POST',
     body,
   })
