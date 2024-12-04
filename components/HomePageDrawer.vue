@@ -222,6 +222,12 @@ async function onTypeSaveConfirm(id: number, value: string) {
                   <a-input v-model:value.number.trim="form.caloric" placeholder="输入热量" />
                 </a-form-item>
               </a-col>
+              <!-- 深蹲次数 -->
+              <a-col :span="12">
+                <a-form-item label="深蹲次数" name="squat">
+                  <a-input v-model:value.number.trim="form.squat" placeholder="输入当日深蹲次数" />
+                </a-form-item>
+              </a-col>
             </a-row>
             <!-- button groups -->
             <div fixed bottom-0 left-0 z-1 w="720px" bg-white b-t="1 solid #e9e9e9" px-2 py-3 text-right>
@@ -234,7 +240,7 @@ async function onTypeSaveConfirm(id: number, value: string) {
             </div>
           </a-form>
         </a-tab-pane>
-        <a-tab-pane key="2" tab="新建训练计划" force-render />
+        <a-tab-pane key="2" tab="训练计划" force-render />
         <a-tab-pane key="3" tab="表格" force-render>
           <!-- 表格区域 -->
           <div w-full>
