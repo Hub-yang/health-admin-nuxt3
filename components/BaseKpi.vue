@@ -9,6 +9,12 @@ const avgBMI = computed(() => {
   num = +num
   return num <= 18 ? '偏低' : num >= 24 ? '偏高' : '正常'
 })
+
+// 获取深蹲次数
+await fetchSquatTotal().getValue()
+const squatTotal = useState('squatTotal', () => 0)
+const year = useState('year')
+watch(year, () => fetchSquatTotal().getValue())
 </script>
 
 <template>
@@ -57,6 +63,15 @@ const avgBMI = computed(() => {
         <div w-full pl-4 text-4 text-base-text>
           平均BMI
         </div>
+      </div>
+    </div>
+    <div w="90%" border-b="4px solid #2f313c" my-1.5 />
+    <div mt-4 w-full flex items-center gap-3>
+      <span bg="#9ecb7f" inline-block h-7 w-1 rounded-xl />
+      <div flex gap-2>
+        <span text-4 text-white>深蹲次数</span>
+        <span color-white:50>—</span>
+        <span text-4 text-white>{{ squatTotal }}</span>
       </div>
     </div>
   </div>

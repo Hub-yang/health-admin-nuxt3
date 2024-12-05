@@ -5,11 +5,13 @@ const {
   rules,
   onFinish,
   onFinishFailed,
+  onSquatCountAdd,
   resetForm,
   locale,
   form,
   formRef,
   submitLoading,
+  addSquatLoading,
 } = useForm()
 
 const uid = ref((useStorage().getItem(USERINFO_KEY) as anyKey)?.uid)
@@ -173,8 +175,7 @@ async function onTypeSaveConfirm(id: number, value: string) {
         <a-tab-pane key="1" tab="新增记录">
           <!-- 表单区域 -->
           <a-form
-            ref="formRef" :model="form" :rules="(rules as any)" layout="vertical" autocomplete="off"
-            @finish="onFinish" @finish-failed="onFinishFailed"
+            ref="formRef" :model="form" :rules="(rules as any)" layout="vertical" autocomplete="off" @finish-failed="onFinishFailed"
           >
             <a-row :gutter="16">
               <!-- 日期选择 -->
@@ -203,14 +204,14 @@ async function onTypeSaveConfirm(id: number, value: string) {
                     mode="tags" placeholder="选择训练类型" :options="trainingType"
                     @blur="onSelectBlur"
                   />
-                  <a-button @click="onTypeEdit">
+                  <a-button type="primary" ghost @click="onTypeEdit">
                     编辑
                   </a-button>
                 </a-form-item>
               </a-col>
               <!-- 运动时长 -->
               <a-col :span="12">
-                <a-form-item has-feedback label="运送时长(min):" name="sportTime">
+                <a-form-item has-feedback label="运动时长(min):" name="sportTime">
                   <a-input v-model:value.number.trim="form.sportTime" placeholder="输入运动时长" />
                 </a-form-item>
               </a-col>
@@ -224,8 +225,11 @@ async function onTypeSaveConfirm(id: number, value: string) {
               </a-col>
               <!-- 深蹲次数 -->
               <a-col :span="12">
-                <a-form-item label="深蹲次数" name="squat">
-                  <a-input v-model:value.number.trim="form.squat" placeholder="输入当日深蹲次数" />
+                <a-form-item has-feedback label="深蹲次数" name="squatCount" class="custon_row hide_mark">
+                  <a-input v-model:value.number.trim="form.squatCount" placeholder="输入当日深蹲次数" />
+                  <a-button type="primary" ghost :loading="addSquatLoading" @click="onSquatCountAdd">
+                    +
+                  </a-button>
                 </a-form-item>
               </a-col>
             </a-row>
@@ -234,7 +238,7 @@ async function onTypeSaveConfirm(id: number, value: string) {
               <a-button mr-2 @click="resetForm">
                 重置
               </a-button>
-              <a-button html-type="submit" type="primary" ghost :loading="submitLoading">
+              <a-button type="primary" ghost :loading="submitLoading" @click="onFinish">
                 提交
               </a-button>
             </div>
@@ -302,17 +306,3 @@ async function onTypeSaveConfirm(id: number, value: string) {
     </a-table>
   </a-modal>
 </template>
-
-<style lang="scss" scoped>
-.custon_row {
-  :deep(.ant-form-item-control) {
-    .ant-form-item-control-input-content {
-      display: flex;
-      justify-content: space-between;
-    }
-    .ant-select {
-      width: 80%;
-    }
-  }
-}
-</style>

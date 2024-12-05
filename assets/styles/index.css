@@ -72,3 +72,21 @@ input[type='range']::-webkit-slider-thumb {
   font-family: 'Bad';
   src: url('../fonts/BadScript-Regular.ttf');
 }
+
+/* ant组件样式重置 */
+
+/* 表单单行多节点flex-row */
+.custon_row {
+  .ant-form-item-control-input-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+  }
+}
+
+/* 隐藏单个表单项必填标识 */
+.hide_mark {
+  .ant-form-item-required::before {
+    display: none !important;
+  }
+}

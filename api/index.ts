@@ -136,3 +136,20 @@ export function updateTrainingType(body = {}) {
     body,
   })
 }
+
+/**
+ * 新增深蹲次数
+ */
+export function addSquatCount(body = {}) {
+  return $fetch('/api/addSquatCount', {
+    method: 'POST',
+    body,
+  })
+}
+
+/**
+ * 获取深蹲总数
+ */
+export function getSquatTotal({ uid = '', year = '' }: anyKey) {
+  return $fetch(`/api/getSquatTotal?uid=${uid}&year=${year}`)
+}
