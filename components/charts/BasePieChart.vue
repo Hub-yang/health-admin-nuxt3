@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 const { data } = useNuxtData(CHART_DATA_FETCH_KEY)
-const currentData = computed(() => getChartThreeData(unref(data)))
+
+const currentData = computed(() => getChartThreeData(toRaw(unref(data))))
 
 const option = computed(() => ({
   tooltip: {

@@ -73,18 +73,15 @@ export function getChartThreeData(res: Res) {
   if (res) {
     const countMap = new Map()
     res.forEach((item) => {
-      try {
-        item.training = JSON.parse(item.training)[0]
-      }
-      catch (err) {
-        console.log(err)
-      }
-      if (countMap.has(item.training)) {
-        countMap.set(item.training, countMap.get(item.training) + 1)
-      }
-      else {
-        countMap.set(item.training, 1)
-      }
+      item.training = JSON.parse(item.training)
+      item.training.forEach((training: any) => {
+        if (countMap.has(training)) {
+          countMap.set(training, countMap.get(training) + 1)
+        }
+        else {
+          countMap.set(training, 1)
+        }
+      })
     })
 
     countMap.forEach((value, name) => {
