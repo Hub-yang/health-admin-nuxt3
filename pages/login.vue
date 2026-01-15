@@ -156,7 +156,7 @@ function clearUsername() {
 </script>
 
 <template>
-  <main class="login_container h-full w-full select-none text-white font-pop">
+  <main class="h-full w-full select-none text-white font-pop">
     <section from="#1b213e" to="#525471" h-full w-full flex-center bg-gradient-to-br after:circle-lg before:circle-sm>
       <div relative z-3 w-390px border-1 border-b-color-gray:10 border-l-color-gray:20 border-r-color-gray:10 border-t-color-gray:20 rounded-2 bg-gray:10 p-6 backdrop-blur-15 base-shadow>
         <p mb10 block text-center>
